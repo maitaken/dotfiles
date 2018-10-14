@@ -62,3 +62,6 @@ set laststatus=2
 
 au BufRead,BufNewFile *.md set filetype=markdown
 let g:previm_open_cmd = 'open -a Safari'
+
+inoremap <silent> jj <ESC>
+inoremap <silent> っj <ESC> 
