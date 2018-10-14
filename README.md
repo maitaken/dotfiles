@@ -1,5 +1,6 @@
 # Install
-```
+```sh
+# ~/ にシンボリックリンクの追加
 sh dotfilesLing.sh
 ```
 
