@@ -34,7 +34,9 @@ NeoBundle 'altercation/vim-colors-solarized'
 NeoBundle 'KeitaNakamura/railscasts.vim'
 NeoBundle 'itchyny/lightline.vim'
 NeoBundle 'Shougo/vimshell', { 'rev' : '3787e5' }
-
+NeoBundle 'plasticboy/vim-markdown'
+NeoBundle 'kannokanno/previm'
+NeoBundle 'tyru/open-browser.vim'
 call neobundle#end()
 
 filetype plugin indent on
@@ -57,3 +59,6 @@ let g:lightline = {
       \ },
       \ }
 set laststatus=2
+
+au BufRead,BufNewFile *.md set filetype=markdown
+let g:previm_open_cmd = 'open -a Safari'
