@@ -1,3 +1,8 @@
+# 必要なもの
+- NeoBundle
+- tmux
+- zsh
+
 # Install
 ```sh
 # ~/ にシンボリックリンクの追加
