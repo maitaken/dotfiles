@@ -14,8 +14,6 @@ setopt share_history
 
 setopt histignorealldups
 
-setopt correct
-
 alias cot=' open $1 -a /Applications/CotEditor.app '
 
 
