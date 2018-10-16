@@ -1,4 +1,5 @@
 # 必要なもの
+- Lua
 - NeoBundle
 - tmux
 - zsh
