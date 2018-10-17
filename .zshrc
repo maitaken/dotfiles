@@ -2,6 +2,7 @@
 export ZPLUG_HOME=/usr/local/opt/zplug
 setopt IGNOREEOF
 
+export LC_ALL=ja_JP.UTF-8
 export LANG=ja_JA.UTF-8
 
 autoload -Uz colors
