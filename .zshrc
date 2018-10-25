@@ -11,11 +11,6 @@ export LANG=ja_JA.UTF-8
 
 alias cot=' open $1 -a /Applications/CotEditor.app '
 
-PROMPT="%{$fg[green]%}[%n]%(!.#.$) %{$reset_color%}"
-PROMPT2="%{$fg[green]%}%_> %{$reset_color%}"
-SPROMPT="%{$fg[red]%}correct: %R -> %r [nyae]? %{$reset_color%}"
-RPROMPT="%{$fg[cyan]%}[%~]%{$reset_color%}"
-
 TERM=xterm-256color
 
 autoload -Uz colors
@@ -24,7 +19,9 @@ autoload -Uz compinit
 compinit
 autoload colors
 colors
+
 autoload -Uz vcs_info
+
 
 setopt prompt_subst
 setopt share_history
@@ -37,3 +34,8 @@ zstyle ':vcs_info:*' formats "%F{green}%c%u[%b]%f"
 zstyle ':vcs_info:*' actionformats '[%b|%a]'
 RPROMPT=$RPROMPT'${vcs_info_msg_0_}'
 precmd () { vcs_info }
+
+PROMPT="%{$fg[green]%}[%n]%(!.#.$) %{$reset_color%}"
+PROMPT2="%{$fg[green]%}%_> %{$reset_color%}"
+SPROMPT="%{$fg[red]%}correct: %R -> %r [nyae]? %{$reset_color%}"
+RPROMPT="%{$fg[cyan]%}[%~]%{$reset_color%}"
