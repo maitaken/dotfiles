@@ -9,24 +9,31 @@ eval "$(pyenv init -)"
 export LC_ALL=ja_JP.UTF-8
 export LANG=ja_JA.UTF-8
 
-autoload -Uz colors
-colors
-autoload -Uz compinit
-compinit
-autoload colors
-colors
-
-setopt share_history
-setopt histignorealldups
-
 alias cot=' open $1 -a /Applications/CotEditor.app '
-
-# bindkey -v
-TERM=xterm-256color
-
 
 PROMPT="%{$fg[green]%}[%n]%(!.#.$) %{$reset_color%}"
 PROMPT2="%{$fg[green]%}%_> %{$reset_color%}"
 SPROMPT="%{$fg[red]%}correct: %R -> %r [nyae]? %{$reset_color%}"
 RPROMPT="%{$fg[cyan]%}[%~]%{$reset_color%}"
 
+TERM=xterm-256color
+
+autoload -Uz colors
+colors
+autoload -Uz compinit
+compinit
+autoload colors
+colors
+autoload -Uz vcs_info
+
+setopt prompt_subst
+setopt share_history
+setopt histignorealldups
+
+zstyle ':vcs_info:git:*' check-for-changes true
+zstyle ':vcs_info:git:*' stagedstr "%F{yellow}!"
+zstyle ':vcs_info:git:*' unstagedstr "%F{red}+"
+zstyle ':vcs_info:*' formats "%F{green}%c%u[%b]%f"
+zstyle ':vcs_info:*' actionformats '[%b|%a]'
+RPROMPT=$RPROMPT'${vcs_info_msg_0_}'
+precmd () { vcs_info }
