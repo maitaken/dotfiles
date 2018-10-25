@@ -32,10 +32,11 @@ zstyle ':vcs_info:git:*' stagedstr "%F{yellow}!"
 zstyle ':vcs_info:git:*' unstagedstr "%F{red}+"
 zstyle ':vcs_info:*' formats "%F{green}%c%u[%b]%f"
 zstyle ':vcs_info:*' actionformats '[%b|%a]'
-RPROMPT=$RPROMPT'${vcs_info_msg_0_}'
 precmd () { vcs_info }
 
 PROMPT="%{$fg[green]%}[%n]%(!.#.$) %{$reset_color%}"
 PROMPT2="%{$fg[green]%}%_> %{$reset_color%}"
 SPROMPT="%{$fg[red]%}correct: %R -> %r [nyae]? %{$reset_color%}"
 RPROMPT="%{$fg[cyan]%}[%~]%{$reset_color%}"
+
+RPROMPT=$RPROMPT'${vcs_info_msg_0_}'
