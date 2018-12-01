@@ -15,9 +15,9 @@ if has('vim_starting')
   set runtimepath+=/Users/jabaraster/.vim/bundle/neobundle.vim/
 endif
 
-set runtimepath+=/Users/maitake/.vim/bundle/neobundle.vim/
+set runtimepath+=$HOME/.vim/bundle/neobundle.vim/
 
-call neobundle#begin(expand('/Users/maitake/.vim/bundle'))
+call neobundle#begin(expand('$HOME/.vim/bundle'))
 
 NeoBundleFetch 'Shougo/neobundle.vim'
 
@@ -131,8 +131,9 @@ let g:lightline = {
       \ }
 set laststatus=2
 
-au BufRead,BufNewFile *.md set filetype=markdown
-let g:previm_open_cmd = 'open -a Safari'
+autocmd BufRead,BufNewFile *.mkd  set filetype=markdown
+autocmd BufRead,BufNewFile *.md  set filetype=markdown
+let g:vim_markdown_folding_disabled=1
 
 inoremap <silent> jj <ESC>
 inoremap <silent> っj <ESC>
