@@ -2,8 +2,8 @@
 export ZPLUG_HOME=/usr/local/opt/zplug
 setopt IGNOREEOF
 
-export PYENV_ROOT="$HOME/.pyenv"
-export PATH="$PYENV_ROOT/bin:$PATH"
+export PYENV_ROOT=/usr/local/var/pyenv
+if which pyenv > /dev/null; then eval "$(pyenv init -)"; fi
 eval "$(pyenv init -)"
 
 export LC_ALL=ja_JP.UTF-8
@@ -41,3 +41,5 @@ PROMPT="%{$fg[green]%}[%n]%(!.#.$) %{$reset_color%}"
 PROMPT2="%{$fg[green]%}%_> %{$reset_color%}"
 SPROMPT="%{$fg[red]%}correct: %R -> %r [nyae]? %{$reset_color%}"
 RPROMPT="%{$fg[cyan]%}[%~]%{$reset_color%}"
+
+RPROMPT=$RPROMPT'${vcs_info_msg_0_}'
