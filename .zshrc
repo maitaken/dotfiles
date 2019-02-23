@@ -10,6 +10,7 @@ export LC_ALL=ja_JP.UTF-8
 export LANG=ja_JA.UTF-8
 
 alias cot=' open $1 -a /Applications/CotEditor.app '
+alias ll='ls -l'
 
 TERM=xterm-256color
 
@@ -32,6 +33,7 @@ zstyle ':vcs_info:git:*' stagedstr "%F{yellow}!"
 zstyle ':vcs_info:git:*' unstagedstr "%F{red}+"
 zstyle ':vcs_info:*' formats "%F{green}%c%u[%b]%f"
 zstyle ':vcs_info:*' actionformats '[%b|%a]'
+
 RPROMPT=$RPROMPT'${vcs_info_msg_0_}'
 precmd () { vcs_info }
 
