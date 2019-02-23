@@ -1,13 +1,11 @@
 set number
-
-
 set encoding=utf-8
-
 set expandtab
 set tabstop=2
 set softtabstop=2
 set smartindent
 set shiftwidth=2
+set nofoldenable
 " 起動時にruntimepathにNeoBundleのパスを追加する
 if has('vim_starting')
   if &compatible
@@ -89,6 +87,7 @@ command! CtrlPCommandLine call ctrlp#init(ctrlp#commandline#id())
 " CtrlPFunkyの有効化
 let g:ctrlp_funky_matchtype = 'path'
 
+let g:vim_markdown_conceal = 0
 
 "----------------------------------------------------------
 " Syntasticの設定
