@@ -72,6 +72,11 @@ NeoBundle 'tacahiroy/ctrlp-funky'
 NeoBundle 'suy/vim-ctrlp-commandline'
 " 構文エラーチェック
 NeoBundle 'scrooloose/syntastic'
+" プロジェクトツリー
+NeoBundle 'scrooloose/nerdtree'
+
+nnoremap <silent><C-e> :NERDTreeToggle<CR>
+let NERDTreeShowHidden = 1
 
 "----------------------------------------------------------
 " CtrlPの設定
