@@ -13,8 +13,11 @@ if dein#load_state('$HOME/.cache/dein')
 
   call dein#add('Shougo/neosnippet.vim')
   call dein#add('Shougo/neosnippet-snippets')
+	call dein#add('Shougo/neocomplete.vim')
 
   call dein#add('fatih/vim-go')
+	call dein#add('scrooloose/nerdtree')
+	call dein#add('nathanaelkane/vim-indent-guides')
 
   call dein#end()
   call dein#save_state()
@@ -26,6 +29,21 @@ endif
 
 filetype plugin indent on
 syntax enable
+
+
+" NERDTree Config
+function s:MoveToFileAtStart()
+  call feedkeys("\<C-w>")
+  call feedkeys("\l")
+endfunction
+autocmd VimEnter * NERDTree | call s:MoveToFileAtStart()
+
+let NERDTreeShowHidden = 1
+nnoremap <silent><C-e> :NERDTreeToggle<CR>
+autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
+let g:NERDTreeDirArrowExpandable = '▸'
+let g:NERDTreeDirArrowCollapsible = '▾'
+
 
 inoremap <silent> jj <ESC>
 inoremap <silent> っj <ESC>
