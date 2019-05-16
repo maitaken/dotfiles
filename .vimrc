@@ -10,6 +10,8 @@ set cursorline
 set ignorecase
 set hlsearch
 
+filetype on
+let mapleader = "\<Space>"
 
 " 設定ファイルの読み込みPath
 set runtimepath+=$HOME/.cache/dein/repos/github.com/Shougo/dein.vim
@@ -39,6 +41,7 @@ if dein#load_state('$HOME/.cache/dein')
 	call dein#add('w0rp/ale')
   call dein#add('cohama/lexima.vim')
   call dein#add('airblade/vim-gitgutter')
+  call dein#add('scrooloose/nerdcommenter')
 
   call dein#end()
   call dein#save_state()
