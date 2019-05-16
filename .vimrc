@@ -42,6 +42,7 @@ if dein#load_state('$HOME/.cache/dein')
   call dein#add('cohama/lexima.vim')
   call dein#add('airblade/vim-gitgutter')
   call dein#add('scrooloose/nerdcommenter')
+  call dein#add('easymotion/vim-easymotion')
 
   call dein#end()
   call dein#save_state()
