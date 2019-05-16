@@ -37,6 +37,7 @@ if dein#load_state('$HOME/.cache/dein')
 	call dein#add('nathanaelkane/vim-indent-guides')
 	call dein#add('yuttie/comfortable-motion.vim')
 	call dein#add('w0rp/ale')
+  call dein#add('cohama/lexima.vim')
 
   call dein#end()
   call dein#save_state()
