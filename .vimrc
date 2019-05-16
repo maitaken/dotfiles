@@ -38,6 +38,7 @@ if dein#load_state('$HOME/.cache/dein')
 	call dein#add('yuttie/comfortable-motion.vim')
 	call dein#add('w0rp/ale')
   call dein#add('cohama/lexima.vim')
+  call dein#add('airblade/vim-gitgutter')
 
   call dein#end()
   call dein#save_state()
@@ -75,6 +76,10 @@ highlight link ALEErrorSign Tag
 highlight link ALEWarningSign StorageClass
 nmap <silent> <C-k> <Plug>(ale_previous_wrap)
 nmap <silent> <C-j> <Plug>(ale_next_wrap)
+
+" vim-gitgutter Config
+nnoremap <silent> <C-g><C-n> <Plug>GitGutterNextHunk
+nnoremap <silent> <C-g><C-p> <Plug>GitGutterPrevHunk
 
 " Neocomplete
 " "Note: This option must be set in .vimrc(_vimrc).  NOT IN .gvimrc(_gvimrc)!
