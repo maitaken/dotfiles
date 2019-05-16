@@ -7,7 +7,7 @@ if which pyenv > /dev/null; then eval "$(pyenv init -)"; fi
 eval "$(pyenv init -)"
 
 export GOPATH=$HOME/dev
-export PATH=$GOPATH/bin
+export PATH=$GOPATH/bin:$PATH
 
 export LC_ALL=ja_JP.UTF-8
 export LANG=ja_JA.UTF-8
