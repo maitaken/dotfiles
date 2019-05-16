@@ -6,6 +6,9 @@ export PYENV_ROOT=/usr/local/var/pyenv
 if which pyenv > /dev/null; then eval "$(pyenv init -)"; fi
 eval "$(pyenv init -)"
 
+export GOPATH=$HOME/dev
+export PATH=$GOPATH/bin
+
 export LC_ALL=ja_JP.UTF-8
 export LANG=ja_JA.UTF-8
 
