@@ -9,6 +9,8 @@ eval "$(pyenv init -)"
 export GOPATH=$HOME/dev
 export PATH=$GOPATH/bin:$PATH
 
+export XDG_CONFIG_HOME="$HOME/.config"
+
 export LC_ALL=ja_JP.UTF-8
 export LANG=ja_JA.UTF-8
 
