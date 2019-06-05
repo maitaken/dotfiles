@@ -48,13 +48,13 @@ if dein#load_state('$HOME/.cache/dein')
   call dein#add('roxma/nvim-yarp')
   call dein#add('roxma/vim-hug-neovim-rpc')
 
+  call dein#add('zchee/deoplete-jedi')
+  call dein#add('zchee/deoplete-go')
+
   call dein#add('itchyny/lightline.vim')
 
   " Color Scheme
-  call dein#add('tomasr/molokai')
-  call dein#add('romainl/Apprentice')
-  call dein#add('freeo/vim-kalisi')
-  call dein#add('jacoborus/tender.vim')
+  call dein#add('flazz/vim-colorschemes')
 
   call dein#add('fatih/vim-go')
   call dein#add('scrooloose/nerdtree')
@@ -147,5 +147,5 @@ inoremap <silent> jj <ESC>
 inoremap <silent> っj <ESC>
 
 
-colorscheme koehler
+colorscheme Tomorrow-Night-Eighties
 
