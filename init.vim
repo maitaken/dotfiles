@@ -147,5 +147,5 @@ inoremap <silent> jj <ESC>
 inoremap <silent> っj <ESC>
 
 
-colorscheme tender
+colorscheme molokai
 
