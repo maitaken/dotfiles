@@ -1,14 +1,34 @@
 set number
 set encoding=utf-8
-set tabstop=2
-set expandtab
-set shiftwidth=2
+
+" スワップファイルやバックアップファイルを作成しない
 set nobackup
 set noswapfile
+
+" カーソルのある行を強調
 set cursorline
 
+" 空白の可視化
+set list
+set listchars=tab:>.,trail:_,eol:↲,extends:>,precedes:<,nbsp:%
+
+" クリップボードと無名レジスタの紐付け
+set clipboard+=unnamedplus
+
+" 検索時の大文字を無視
+" 検索文字に大文字がある場合は無視しない
 set ignorecase
+set smartcase
 set hlsearch
+set incsearch
+set inccommand=split
+
+" タブ幅系の設定
+set expandtab
+set smarttab
+set tabstop=2
+set shiftwidth=2
+set shiftround
 
 filetype on
 let mapleader = "\<Space>"
@@ -18,27 +38,30 @@ set runtimepath+=$HOME/.cache/dein/repos/github.com/Shougo/dein.vim
 
 if dein#load_state('$HOME/.cache/dein')
   call dein#begin('$HOME/.cache/dein')
-  
+
   call dein#add('$HOME/.cache/dein/repos/github.com/Shougo/dein.vim')
 
   call dein#add('Shougo/neosnippet.vim')
   call dein#add('Shougo/neosnippet-snippets')
-	call dein#add('Shougo/neocomplete.vim')
+  call dein#add('Shougo/neocomplete.vim')
+  call dein#add('Shougo/deoplete.nvim')
+  call dein#add('roxma/nvim-yarp')
+  call dein#add('roxma/vim-hug-neovim-rpc')
 
-	call dein#add('itchyny/lightline.vim')
-	
-	" Color Scheme
-	call dein#add('tomasr/molokai')
-	call dein#add('romainl/Apprentice')
-	call dein#add('freeo/vim-kalisi')
-	call dein#add('jacoborus/tender.vim')
+  call dein#add('itchyny/lightline.vim')
+
+  " Color Scheme
+  call dein#add('tomasr/molokai')
+  call dein#add('romainl/Apprentice')
+  call dein#add('freeo/vim-kalisi')
+  call dein#add('jacoborus/tender.vim')
 
   call dein#add('fatih/vim-go')
-	call dein#add('scrooloose/nerdtree')
-	call dein#add('Xuyuanp/nerdtree-git-plugin')
-	call dein#add('nathanaelkane/vim-indent-guides')
-	call dein#add('yuttie/comfortable-motion.vim')
-	call dein#add('w0rp/ale')
+  call dein#add('scrooloose/nerdtree')
+  call dein#add('Xuyuanp/nerdtree-git-plugin')
+  call dein#add('nathanaelkane/vim-indent-guides')
+  call dein#add('yuttie/comfortable-motion.vim')
+  call dein#add('w0rp/ale')
   call dein#add('cohama/lexima.vim')
   call dein#add('airblade/vim-gitgutter')
   call dein#add('scrooloose/nerdcommenter')
@@ -48,12 +71,43 @@ if dein#load_state('$HOME/.cache/dein')
   call dein#save_state()
 endif
 
+" deoplete Config
+let g:deoplete#enable_at_startup = 1
+" Plugin key-mappings.
+" Note: It must be "imap" and "smap".  It uses <Plug> mappings.
+imap <C-k>     <Plug>(neosnippet_expand_or_jump)
+smap <C-k>     <Plug>(neosnippet_expand_or_jump)
+xmap <C-k>     <Plug>(neosnippet_expand_target)
+
+" SuperTab like snippets behavior.
+" Note: It must be "imap" and "smap".  It uses <Plug> mappings.
+"imap <expr><TAB>
+" \ pumvisible() ? "\<C-n>" :
+" \ neosnippet#expandable_or_jumpable() ?
+" \    "\<Plug>(neosnippet_expand_or_jump)" : "\<TAB>"
+smap <expr><TAB> neosnippet#expandable_or_jumpable() ?
+\ "\<Plug>(neosnippet_expand_or_jump)" : "\<TAB>"
+
+" For conceal markers.
+if has('conceal')
+  set conceallevel=2 concealcursor=niv
+endif
+
+" バックスペースで補完のポップアップを閉じる
+inoremap <expr><BS> neocomplete#smart_close_popup()."\<C-h>"
+
+" エンターキーで補完候補の確定. スニペットの展開もエンターキーで確定・・・・・・②
+imap <expr><CR> neosnippet#expandable() ? "\<Plug>(neosnippet_expand_or_jump)" : pumvisible() ? "\<C-y>" : "\<CR>"
+" タブキーで補完候補の選択. スニペット内のジャンプもタブキーでジャンプ・・・・・・③
+imap <expr><TAB> pumvisible() ? "\<C-n>" : neosnippet#jumpable() ? "\<Plug>(neosnippet_expand_or_jump)" : "\<TAB>"
+
 if dein#check_install()
   call dein#install()
 endif
 
 filetype plugin indent on
 syntax enable
+
 
 " NERDTree Config
 function s:MoveToFileAtStart()
@@ -67,6 +121,10 @@ nnoremap <silent><C-e> :NERDTreeToggle<CR>
 autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
 let g:NERDTreeDirArrowExpandable = '▸'
 let g:NERDTreeDirArrowCollapsible = '▾'
+nnoremap <C-h> <C-w>h
+nnoremap <C-j> <C-w>j
+nnoremap <C-k> <C-w>k
+nnoremap <C-l> <C-w>l
 
 " Ale Config
 
@@ -84,63 +142,6 @@ nmap <silent> <C-j> <Plug>(ale_next_wrap)
 " vim-gitgutter Config
 nnoremap <silent> <C-g><C-n> <Plug>GitGutterNextHunk
 nnoremap <silent> <C-g><C-p> <Plug>GitGutterPrevHunk
-
-" Neocomplete
-" "Note: This option must be set in .vimrc(_vimrc).  NOT IN .gvimrc(_gvimrc)!
-" Disable AutoComplPop.
-let g:acp_enableAtStartup = 0
-" Use neocomplete.
-let g:neocomplete#enable_at_startup = 1
-" Use smartcase.
-let g:neocomplete#enable_smart_case = 1
-" Set minimum syntax keyword length.
-let g:neocomplete#sources#syntax#min_keyword_length = 3
-
-" Define dictionary.
-let g:neocomplete#sources#dictionary#dictionaries = {
-    \ 'default' : '',
-    \ 'vimshell' : $HOME.'/.vimshell_hist',
-    \ 'scheme' : $HOME.'/.gosh_completions'
-        \ }
-
-" Define keyword.
-if !exists('g:neocomplete#keyword_patterns')
-    let g:neocomplete#keyword_patterns = {}
-endif
-let g:neocomplete#keyword_patterns['default'] = '\h\w*'
-
-" Plugin key-mappings.
-inoremap <expr><C-g>     neocomplete#undo_completion()
-inoremap <expr><C-l>     neocomplete#complete_common_string()
-
-" Recommended key-mappings.
-" <CR>: close popup and save indent.
-inoremap <silent> <CR> <C-r>=<SID>my_cr_function()<CR>
-function! s:my_cr_function()
-  return (pumvisible() ? "\<C-y>" : "" ) . "\<CR>"
-  " For no inserting <CR> key.
-  "return pumvisible() ? "\<C-y>" : "\<CR>"
-endfunction
-" <TAB>: completion.
-inoremap <expr><TAB>  pumvisible() ? "\<C-n>" : "\<TAB>"
-" <C-h>, <BS>: close popup and delete backword char.
-inoremap <expr><C-h> neocomplete#smart_close_popup()."\<C-h>"
-inoremap <expr><BS> neocomplete#smart_close_popup()."\<C-h>"
-" Close popup by <Space>.
-"inoremap <expr><Space> pumvisible() ? "\<C-y>" : "\<Space>"
-
-" Enable heavy omni completion.
-if !exists('g:neocomplete#sources#omni#input_patterns')
-  let g:neocomplete#sources#omni#input_patterns = {}
-endif
-"let g:neocomplete#sources#omni#input_patterns.php = '[^. \t]->\h\w*\|\h\w*::'
-"let g:neocomplete#sources#omni#input_patterns.c = '[^.[:digit:] *\t]\%(\.\|->\)'
-"let g:neocomplete#sources#omni#input_patterns.cpp = '[^.[:digit:] *\t]\%(\.\|->\)\|\h\w*::'
-
-" For perlomni.vim setting.
-" https://github.com/c9s/perlomni.vim
-let g:neocomplete#sources#omni#input_patterns.perl = '\h\w*->\h\w*\|\h\w*::'
-
 
 inoremap <silent> jj <ESC>
 inoremap <silent> っj <ESC>
