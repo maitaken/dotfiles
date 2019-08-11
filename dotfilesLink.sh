@@ -1,6 +1,9 @@
 #!/bin/sh
 
-ln -sf ~/dotfiles/init.vim $XDG_CONFIG_HOME/nvim/init.vim
+echo "Create $HOME/.config/nvim"
+mkdir -p $HOME/.config/nvim/
+
+ln -sf ~/dotfiles/init.vim $HOME/.config/nvim/init.vim
 ln -sf ~/dotfiles/.zshrc ~/.zshrc
 ln -sf ~/dotfiles/.tmux.conf ~/.tmux.conf
 
