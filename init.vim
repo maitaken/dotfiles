@@ -149,5 +149,4 @@ inoremap <silent> jj <ESC>
 inoremap <silent> っj <ESC>
 
 
-colorscheme Tomorrow-Night-Eighties
-
+colorscheme iceberg
