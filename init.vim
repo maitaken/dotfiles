@@ -24,11 +24,12 @@ set incsearch
 set inccommand=split
 
 " タブ幅系の設定
-set expandtab
-set smarttab
 set tabstop=2
 set shiftwidth=2
+set autoindent
+set smartindent
 set shiftround
+set smarttab
 
 filetype on
 let mapleader = "\<Space>"
@@ -66,6 +67,10 @@ if dein#load_state('$HOME/.cache/dein')
   call dein#add('airblade/vim-gitgutter')
   call dein#add('scrooloose/nerdcommenter')
   call dein#add('easymotion/vim-easymotion')
+
+  call dein#add('tpope/vim-markdown')
+  call dein#add('kannokanno/previm')
+  call dein#add('tyru/open-browser.vim')
 
   call dein#end()
   call dein#save_state()
@@ -149,3 +154,12 @@ inoremap <silent> っj <ESC>
 
 colorscheme Tomorrow-Night-Eighties
 
+""" markdown {{{
+   autocmd BufRead,BufNewFile *.mkd  set filetype=markdown
+   autocmd BufRead,BufNewFile *.md  set filetype=markdown
+   " Need: kannokanno/previm
+   nnoremap <silent> <C-p> :PrevimOpen<CR> " Ctrl-pでプレビュー
+   " 自動で折りたたまないようにする
+   let g:vim_markdown_folding_disabled=1
+   let g:previm_enable_realtime = 1
+ " }}}
