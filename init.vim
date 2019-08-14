@@ -131,6 +131,8 @@ nnoremap <C-j> <C-w>j
 nnoremap <C-k> <C-w>k
 nnoremap <C-l> <C-w>l
 
+let g:NERDSpaceDelims=1
+
 " Ale Config
 
 let g:ale_lint_on_text_changed = 0
@@ -152,14 +154,4 @@ inoremap <silent> jj <ESC>
 inoremap <silent> っj <ESC>
 
 
-colorscheme Tomorrow-Night-Eighties
-
-""" markdown {{{
-   autocmd BufRead,BufNewFile *.mkd  set filetype=markdown
-   autocmd BufRead,BufNewFile *.md  set filetype=markdown
-   " Need: kannokanno/previm
-   nnoremap <silent> <C-p> :PrevimOpen<CR> " Ctrl-pでプレビュー
-   " 自動で折りたたまないようにする
-   let g:vim_markdown_folding_disabled=1
-   let g:previm_enable_realtime = 1
- " }}}
+colorscheme iceberg
