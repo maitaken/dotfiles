@@ -68,10 +68,7 @@ POWERLEVEL9K_SHOW_CHANGESET=true
 POWERLEVEL9K_CHANGESET_HASH_LENGTH=7
 
 if ! zplug check --verbose; then
-  printf `Install? [y/N]: `
-  if read -q; then
-    echo; zplug install
-  fi
+  zplug install
 fi
 
 zplug load
