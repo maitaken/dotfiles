@@ -8,10 +8,10 @@ mkdir -p $HOME/.config/fontconfig/conf.d/
 
 nerd_fonts() {
   git clone --branch=master --depth 1 https://github.com/ryanoasis/nerd-fonts.git
-  cd nerd_fonts
+  cd nerd-fonts
   ./install.sh
   cd ..
-  rm -rf nerd_fonts
+  rm -rf nerd-fonts
 } 
 
 if [ "$(uname)" == "Darwin" ]; then
