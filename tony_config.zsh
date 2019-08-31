@@ -125,4 +125,4 @@ POWERLEVEL9K_NETWORK_ICON=`zsh_internet_signal`
 POWERLEVEL9K_CUSTOM_INTERNET_SIGNAL="zsh_internet_signal"
 
 POWERLEVEL9K_LEFT_PROMPT_ELEMENTS=(os_icon root_indicator context dir_writable dir vcs)
-POWERLEVEL9K_RIGHT_PROMPT_ELEMENTS=(status background_jobs command_execution_time ram virtualenv rbenv rvm battery ip vi_mode)
+POWERLEVEL9K_RIGHT_PROMPT_ELEMENTS=(status background_jobs command_execution_time ram virtualenv rbenv rvm battery ip)
