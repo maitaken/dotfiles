@@ -14,7 +14,14 @@ nerd_fonts() {
   rm -rf nerd-fonts
 } 
 
+# colorlsの導入
+gem install bundle
+gem install colorls
+rbenv rehash
+rehash
+
 if [ "$(uname)" == "Darwin" ]; then
+
   brew tap sambadevi/powerlevel9k
   brew install zplug
   brew install powerlevel9k

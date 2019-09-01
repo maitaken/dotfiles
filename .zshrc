@@ -15,6 +15,10 @@ case ${OSTYPE} in
 		;;
 esac
 
+# colorls
+source $(dirname $(gem which colorls))/tab_complete.sh
+alias lc='colorls -lA --sd'
+
 # define environment variable
 export GOPATH=$HOME/dev
 export PATH=$GOPATH/bin:$PATH
@@ -31,6 +35,14 @@ alias ga='git add'
 alias gl='glt log'
 alias gp='git push'
 alias gc='git commit'
+
+if type "nvim" > /dev/null 2>&1; then
+	alias v="nvim"
+	alias vi="nvim"
+	alias vim="nvim"
+fi
+
+# alias
 
 TERM=xterm-256color
 autoload -Uz colors
