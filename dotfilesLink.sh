@@ -17,6 +17,7 @@ nerd_fonts() {
 
 if [ "$(uname)" == "Darwin" ]; then
 	brew install rbenv ruby-build
+	brew install reattach-to-user-namespace
 
   brew tap sambadevi/powerlevel9k
   brew install zplug
