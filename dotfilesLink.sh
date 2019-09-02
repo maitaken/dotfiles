@@ -14,13 +14,9 @@ nerd_fonts() {
   rm -rf nerd-fonts
 } 
 
-# colorlsの導入
-gem install bundle
-gem install colorls
-rbenv rehash
-rehash
 
 if [ "$(uname)" == "Darwin" ]; then
+	brew install rbenv ruby-build
 
   brew tap sambadevi/powerlevel9k
   brew install zplug
@@ -28,8 +24,20 @@ if [ "$(uname)" == "Darwin" ]; then
   brew install fontconfig
 
   nerd_fonts
+else
+	sudo apt install rbenv ruby-build
+	curl -sL --proto-redir -all,https https://raw.githubusercontent.com/zplug/installer/master/installer.zsh | zsh
 fi
 
+# ruby setting
+rbenv install 2.3,1
+rbenv global 2.3.1
+
+# colorlsの導入
+gem install bundle
+gem install colorls
+rbenv rehash
+rehash
 
 # Download Font
 echo "Download Font"
