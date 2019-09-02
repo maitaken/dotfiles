@@ -1,19 +1,22 @@
-export ZPLUG_HOME=/usr/local/opt/zplug
-source $ZPLUG_HOME/init.zsh
-
 case ${OSTYPE} in
 	darwin*)
-		 export PYENV_ROOT=/usr/local/var/pyenv
-		 if [ -x "`which pyenv`" ]; then
-			 eval "$(pyenv init -)"
-		 fi
-
+		export ZPLUG_HOME=/usr/local/opt/zplug
+		export PYENV_ROOT=/usr/local/var/pyenv
+		if [ -x "`which pyenv`" ]; then
+			eval "$(pyenv init -)"
+		fi
 
 			alias cot='open $1 -a /Applications/CotEditor.app '   	
 		;;
 	linux*)
+			export ZPLUG_HOME=$HOME/.zplug
 		;;
 esac
+
+source $ZPLUG_HOME/init.zsh
+
+# ruby
+eval "$(rbenv init - zsh)"
 
 # colorls
 source $(dirname $(gem which colorls))/tab_complete.sh
