@@ -62,3 +62,6 @@ if ! zplug check --verbose; then
 fi
 
 zplug load
+
+export ANDROID_SDK_ROOT=/Users/maitake/Library/Android/sdk
+export ANDROID_AVD_HOME=/Users/ryadahitdep/.android/avd
