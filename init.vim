@@ -68,6 +68,7 @@ if dein#load_state('$HOME/.cache/dein')
   call dein#add('airblade/vim-gitgutter')
   call dein#add('scrooloose/nerdcommenter')
   call dein#add('easymotion/vim-easymotion')
+	call dein#add('Yggdroot/indentLine')
 	call dein#add('editorconfig/editorconfig-vim')
 
   call dein#add('tpope/vim-markdown')
