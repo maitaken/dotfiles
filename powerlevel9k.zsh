@@ -40,4 +40,4 @@ POWERLEVEL9K_ANACONDA_RIGHT_DELIMITER=""
 POWERLEVEL9K_ANACONDA_FOREGROUND="white"
 
 POWERLEVEL9K_LEFT_PROMPT_ELEMENTS=(os_icon root_indicator context dir_writable dir vcs)
-POWERLEVEL9K_RIGHT_PROMPT_ELEMENTS=(status background_jobs anaconda disk_usage ram load ip)
+POWERLEVEL9K_RIGHT_PROMPT_ELEMENTS=(status background_jobs anaconda vi_mode load ip)

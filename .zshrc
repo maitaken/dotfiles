@@ -44,6 +44,9 @@ if type "nvim" > /dev/null 2>&1; then
 	alias vim="nvim"
 fi
 
+bindkey -v
+bindkey -M viins "jj" vi-cmd-mode
+
 # alias
 
 TERM=xterm-256color
