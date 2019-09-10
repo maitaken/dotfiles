@@ -1,12 +1,11 @@
 case ${OSTYPE} in
 	darwin*)
 		export ZPLUG_HOME=/usr/local/opt/zplug
-		export PYENV_ROOT=/usr/local/var/pyenv
-		if [ -x "`which pyenv`" ]; then
-			eval "$(pyenv init -)"
+		if [ -d "${HOME}/miniconda3/" ]; then
+			PATH=${HOME}/miniconda3/bin/:$PATH
 		fi
 
-			alias cot='open $1 -a /Applications/CotEditor.app '   	
+		alias cot='open $1 -a /Applications/CotEditor.app '   	
 		;;
 	linux*)
 			export ZPLUG_HOME=$HOME/.zplug
@@ -65,3 +64,4 @@ zplug load
 
 export ANDROID_SDK_ROOT=/Users/maitake/Library/Android/sdk
 export ANDROID_AVD_HOME=/Users/ryadahitdep/.android/avd
+

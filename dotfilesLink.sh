@@ -24,7 +24,15 @@ if [ "$(uname)" == "Darwin" ]; then
   brew install powerlevel9k
   brew install fontconfig
 
-  nerd_fonts
+  if [ ! -f ~/Library/Fonts/Hack\ Bold\ Nerd\ Font\ Complete.ttf ]; then
+    echo "Download Font"
+    nerd_fonts
+  fi
+
+  if [ ! -d ~/miniconda3 ]; then
+    curl -o install.sh https://repo.anaconda.com/miniconda/Miniconda3-latest-MacOSX-x86_64.sh
+    sh install.sh
+  fi
 else
 	sudo apt install rbenv ruby-build
 	curl -sL --proto-redir -all,https https://raw.githubusercontent.com/zplug/installer/master/installer.zsh | zsh
@@ -39,15 +47,6 @@ gem install bundle
 gem install colorls
 rbenv rehash
 rehash
-
-# Download Font
-echo "Download Font"
-wget https://github.com/powerline/powerline/raw/develop/font/PowerlineSymbols.otf
-wget https://github.com/powerline/powerline/raw/develop/font/10-powerline-symbols.conf
-mv PowerlineSymbols.otf ~/.local/share/fonts/
-
-fc-cache -vf ~/.local/share/fonts/
-mv 10-powerline-symbols.conf ~/.config/fontconfig/conf.d/
 
 ln -sf ~/dotfiles/init.vim $HOME/.config/nvim/init.vim
 ln -sf ~/dotfiles/.zshrc ~/.zshrc
