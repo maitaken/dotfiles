@@ -2,7 +2,7 @@ case ${OSTYPE} in
 	darwin*)
 		export ZPLUG_HOME=/usr/local/opt/zplug
 		if [ -d "${HOME}/miniconda3/" ]; then
-			PATH=${HOME}/miniconda3/bin/:$PATH
+			. "/Users/maitake/miniconda3/etc/profile.d/conda.sh"
 		fi
 
 		alias cot='open $1 -a /Applications/CotEditor.app '   	
@@ -54,7 +54,7 @@ compinit
 
 zplug "bhilburn/powerlevel9k", use:"powerlevel9k.zsh-theme"
 
-source ${HOME}/dotfiles/tony_config.zsh
+source ${HOME}/dotfiles/powerlevel9k.zsh
 
 if ! zplug check --verbose; then
   zplug install
@@ -64,4 +64,3 @@ zplug load
 
 export ANDROID_SDK_ROOT=/Users/maitake/Library/Android/sdk
 export ANDROID_AVD_HOME=/Users/ryadahitdep/.android/avd
-
