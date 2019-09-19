@@ -70,6 +70,7 @@ if dein#load_state('$HOME/.cache/dein')
   call dein#add('scrooloose/nerdcommenter')
 	call dein#add('Yggdroot/indentLine')
 	call dein#add('editorconfig/editorconfig-vim')
+  call dein#add('yuttie/comfortable-motion.vim')
 
   call dein#add('tpope/vim-markdown')
   call dein#add('kannokanno/previm')
@@ -78,8 +79,6 @@ if dein#load_state('$HOME/.cache/dein')
   call dein#end()
   call dein#save_state()
 endif
-
-let g:python3_host_prog='/usr/local/bin/python3'
 
 " deoplete Config
 let g:deoplete#enable_at_startup = 1
