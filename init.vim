@@ -42,32 +42,32 @@ if dein#load_state('$HOME/.cache/dein')
 
   call dein#add('$HOME/.cache/dein/repos/github.com/Shougo/dein.vim')
 
-  call dein#add('Shougo/neosnippet.vim')
-  call dein#add('Shougo/neosnippet-snippets')
-  call dein#add('Shougo/neocomplete.vim')
-  call dein#add('Shougo/deoplete.nvim')
-  call dein#add('roxma/nvim-yarp')
-  call dein#add('roxma/vim-hug-neovim-rpc')
+	if has('nvim')
+		call dein#add('roxma/nvim-yarp')
+		call dein#add('roxma/vim-hug-neovim-rpc')
+  	call dein#add('Shougo/deoplete.nvim')
+	else
+  	call dein#add('Shougo/neocomplete.vim')
+	endif
 
+	" 補完
   call dein#add('zchee/deoplete-jedi')
   call dein#add('zchee/deoplete-go')
 
+	call dein#add('udalov/kotlin-vim')
+
+	call dein#add('leafgarland/typescript-vim')
   call dein#add('itchyny/lightline.vim')
 
   " Color Scheme
   call dein#add('flazz/vim-colorschemes')
 
-  call dein#add('fatih/vim-go')
-	call dein#add('udalov/kotlin-vim')
   call dein#add('scrooloose/nerdtree')
   call dein#add('Xuyuanp/nerdtree-git-plugin')
-  call dein#add('nathanaelkane/vim-indent-guides')
-  call dein#add('yuttie/comfortable-motion.vim')
   call dein#add('w0rp/ale')
   call dein#add('cohama/lexima.vim')
   call dein#add('airblade/vim-gitgutter')
   call dein#add('scrooloose/nerdcommenter')
-  call dein#add('easymotion/vim-easymotion')
 	call dein#add('Yggdroot/indentLine')
 	call dein#add('editorconfig/editorconfig-vim')
 
@@ -78,6 +78,8 @@ if dein#load_state('$HOME/.cache/dein')
   call dein#end()
   call dein#save_state()
 endif
+
+let g:python3_host_prog='/usr/local/bin/python3'
 
 " deoplete Config
 let g:deoplete#enable_at_startup = 1
