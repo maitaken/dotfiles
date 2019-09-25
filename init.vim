@@ -42,13 +42,15 @@ if dein#load_state('$HOME/.cache/dein')
 
   call dein#add('$HOME/.cache/dein/repos/github.com/Shougo/dein.vim')
 
-	if has('nvim')
+
+  call dein#add('Shougo/deoplete.nvim')
+	if !has('nvim')
 		call dein#add('roxma/nvim-yarp')
 		call dein#add('roxma/vim-hug-neovim-rpc')
-  	call dein#add('Shougo/deoplete.nvim')
-	else
-  	call dein#add('Shougo/neocomplete.vim')
 	endif
+	
+	call dein#add('Shougo/neosnippet.vim')
+	call dein#add('Shougo/neosnippet-snippets')
 
 	" 補完
   call dein#add('zchee/deoplete-jedi')
@@ -87,6 +89,25 @@ let g:deoplete#enable_at_startup = 1
 imap <C-k> <Plug>(neosnippet_expand_or_jump)
 smap <C-k> <Plug>(neosnippet_expand_or_jump)
 xmap <C-k> <Plug>(neosnippet_expand_target)
+
+" SuperTab like snippets behavior.
+" Note: It must be "imap" and "smap".  It uses <Plug> mappings.
+"imap <expr><TAB>
+" \ pumvisible() ? "\<C-n>" :
+" \ neosnippet#expandable_or_jumpable() ?
+" \    "\<Plug>(neosnippet_expand_or_jump)" : "\<TAB>"
+smap <expr><TAB> neosnippet#expandable_or_jumpable() ?
+\ "\<Plug>(neosnippet_expand_or_jump)" : "\<TAB>"
+
+" For conceal markers.
+if has('conceal')
+  set conceallevel=2 concealcursor=niv
+endif
+
+" tabの保管を有効
+inoremap <expr><tab> pumvisible() ? "\<C-n>" :
+			\ neosnippet#expandable_or_jumpable() ?
+			\    "\<Plug>(neosnippet_expand_or_jump)" : "\<tab>"
 
 if dein#check_install()
   call dein#install()
