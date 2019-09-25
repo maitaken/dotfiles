@@ -22,7 +22,6 @@ if [ "$(uname)" == "Darwin" ]; then
   brew tap sambadevi/powerlevel9k
   brew install zplug
   brew install powerlevel9k
-  brew install fontconfig
 
   if [ ! -f ~/Library/Fonts/Hack\ Bold\ Nerd\ Font\ Complete.ttf ]; then
     echo "Download Font"
@@ -48,12 +47,15 @@ gem install colorls
 rbenv rehash
 rehash
 
-ln -sf ~/dotfiles/init.vim $HOME/.config/nvim/init.vim
-ln -sf ~/dotfiles/.zshrc ~/.zshrc
-ln -sf ~/dotfiles/.tmux.conf ~/.tmux.conf
+ln -f ~/dotfiles/init.vim $HOME/.config/nvim/init.vim
+ln -f ~/dotfiles/init.vim $HOME/.vimrc
+ln -f ~/dotfiles/.zshrc ~/.zshrc
+ln -f ~/dotfiles/.tmux.conf ~/.tmux.conf
 
 curl https://raw.githubusercontent.com/Shougo/dein.vim/master/bin/installer.sh > installer.sh
 chmod +x installer.sh
 mkdir -p $HOME/.cache/dein
 sh ./installer.sh $HOME/.cache/dein
 rm installer.sh
+
+

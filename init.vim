@@ -42,34 +42,35 @@ if dein#load_state('$HOME/.cache/dein')
 
   call dein#add('$HOME/.cache/dein/repos/github.com/Shougo/dein.vim')
 
-  call dein#add('Shougo/neosnippet.vim')
-  call dein#add('Shougo/neosnippet-snippets')
-  call dein#add('Shougo/neocomplete.vim')
-  call dein#add('Shougo/deoplete.nvim')
-  call dein#add('roxma/nvim-yarp')
-  call dein#add('roxma/vim-hug-neovim-rpc')
+	if has('nvim')
+		call dein#add('roxma/nvim-yarp')
+		call dein#add('roxma/vim-hug-neovim-rpc')
+  	call dein#add('Shougo/deoplete.nvim')
+	else
+  	call dein#add('Shougo/neocomplete.vim')
+	endif
 
+	" 補完
   call dein#add('zchee/deoplete-jedi')
   call dein#add('zchee/deoplete-go')
 
+	call dein#add('udalov/kotlin-vim')
+
+	call dein#add('leafgarland/typescript-vim')
   call dein#add('itchyny/lightline.vim')
 
   " Color Scheme
   call dein#add('flazz/vim-colorschemes')
 
-  call dein#add('fatih/vim-go')
-	call dein#add('udalov/kotlin-vim')
   call dein#add('scrooloose/nerdtree')
   call dein#add('Xuyuanp/nerdtree-git-plugin')
-  call dein#add('nathanaelkane/vim-indent-guides')
-  call dein#add('yuttie/comfortable-motion.vim')
   call dein#add('w0rp/ale')
   call dein#add('cohama/lexima.vim')
   call dein#add('airblade/vim-gitgutter')
   call dein#add('scrooloose/nerdcommenter')
-  call dein#add('easymotion/vim-easymotion')
 	call dein#add('Yggdroot/indentLine')
 	call dein#add('editorconfig/editorconfig-vim')
+  call dein#add('yuttie/comfortable-motion.vim')
 
   call dein#add('tpope/vim-markdown')
   call dein#add('kannokanno/previm')
@@ -86,14 +87,6 @@ let g:deoplete#enable_at_startup = 1
 imap <C-k> <Plug>(neosnippet_expand_or_jump)
 smap <C-k> <Plug>(neosnippet_expand_or_jump)
 xmap <C-k> <Plug>(neosnippet_expand_target)
-
-" バックスペースで補完のポップアップを閉じる
-inoremap <expr><BS> neocomplete#smart_close_popup()."\<C-h>"
-
-" エンターキーで補完候補の確定. スニペットの展開もエンターキーで確定・・・・・・②
-imap <expr><CR> neosnippet#expandable() ? "\<Plug>(neosnippet_expand_or_jump)" : pumvisible() ? "\<C-y>" : "\<CR>"
-" タブキーで補完候補の選択. スニペット内のジャンプもタブキーでジャンプ・・・・・・③
-imap <expr><TAB> pumvisible() ? "\<C-n>" : neosnippet#jumpable() ? "\<Plug>(neosnippet_expand_or_jump)" : "\<TAB>"
 
 if dein#check_install()
   call dein#install()
