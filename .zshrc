@@ -17,10 +17,6 @@ source $ZPLUG_HOME/init.zsh
 # ruby
 eval "$(rbenv init - zsh)"
 
-# colorls
-source $(dirname $(gem which colorls))/tab_complete.sh
-alias lc='colorls -lA --sd'
-
 # define environment variable
 export GOPATH=$HOME/dev
 export PATH=$GOPATH/bin:$PATH

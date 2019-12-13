@@ -37,15 +37,8 @@ else
 	curl -sL --proto-redir -all,https https://raw.githubusercontent.com/zplug/installer/master/installer.zsh | zsh
 fi
 
-# ruby setting
 rbenv install 2.3,1
 rbenv global 2.3.1
-
-# colorlsの導入
-gem install bundle
-gem install colorls
-rbenv rehash
-rehash
 
 ln -f ~/dotfiles/init.vim $HOME/.config/nvim/init.vim
 ln -f ~/dotfiles/init.vim $HOME/.vimrc
