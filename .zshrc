@@ -51,9 +51,11 @@ autoload -Uz compinit
 colors
 compinit
 
-zplug "bhilburn/powerlevel9k", use:"powerlevel9k.zsh-theme"
+# powerlevel9kの設定
+# zplug "bhilburn/powerlevel9k", use:"powerlevel9k.zsh-theme"
+# source ${HOME}/dotfiles/powerlevel9k.zsh
 
-source ${HOME}/dotfiles/powerlevel9k.zsh
+eval "$(starship init zsh)"
 
 if ! zplug check --verbose; then
   zplug install
