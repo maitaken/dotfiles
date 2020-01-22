@@ -54,7 +54,7 @@ if dein#load_state('$HOME/.cache/dein')
 
 	" 補完
   call dein#add('zchee/deoplete-jedi')
-  call dein#add('zchee/deoplete-go')
+  " call dein#add('zchee/deoplete-go')
 
 	call dein#add('udalov/kotlin-vim')
 
@@ -84,6 +84,7 @@ endif
 
 " deoplete Config
 let g:deoplete#enable_at_startup = 1
+let g:python3_host_prog = '/usr/local/bin/python3'
 " Plugin key-mappings.
 " Note: It must be "imap" and "smap".  It uses <Plug> mappings.
 imap <C-k> <Plug>(neosnippet_expand_or_jump)
