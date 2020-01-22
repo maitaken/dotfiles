@@ -58,6 +58,10 @@ compinit
 # Starship
 eval "$(starship init zsh)"
 
+if test -e ~/dotfiles/.zshlocalrc; then
+	source ~/dotfiles/.zshlocalrc
+fi
+
 if ! zplug check --verbose; then
   zplug install
 fi
