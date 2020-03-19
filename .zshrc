@@ -1,3 +1,9 @@
+TERM=xterm-256color
+autoload -Uz colors
+autoload -Uz compinit
+colors
+compinit
+
 case ${OSTYPE} in
 	darwin*)
 		export ZPLUG_HOME=/usr/local/opt/zplug
@@ -20,7 +26,6 @@ eval "$(rbenv init - zsh)"
 # define environment variable
 export GOPATH=$HOME/dev
 export PATH=$GOPATH/bin:$PATH
-
 export PATH=$HOME/.nodebrew/current/bin:$PATH
 
 export LC_ALL=ja_JP.UTF-8
@@ -40,16 +45,7 @@ if type "nvim" > /dev/null 2>&1; then
 	alias vim="nvim"
 fi
 
-bindkey -v
-bindkey -M viins "jj" vi-cmd-mode
-
 # alias
-
-TERM=xterm-256color
-autoload -Uz colors
-autoload -Uz compinit
-colors
-compinit
 
 # powerlevel9kの設定
 # zplug "bhilburn/powerlevel9k", use:"powerlevel9k.zsh-theme"
@@ -67,6 +63,3 @@ if ! zplug check --verbose; then
 fi
 
 zplug load
-
-export ANDROID_SDK_ROOT=/Users/maitake/Library/Android/sdk
-export ANDROID_AVD_HOME=/Users/ryadahitdep/.android/avd
