@@ -1,18 +1,39 @@
 #!/bin/sh
 
-echo "Create $HOME/.config/nvim"
-mkdir -p $HOME/.config/nvim/
-mkdir -p $HOME/.local/share/fonts/
-
-mkdir -p $HOME/.config/fontconfig/conf.d/
-
-nerd_fonts() {
+get_nerd_fonts() {
   git clone --branch=master --depth 1 https://github.com/ryanoasis/nerd-fonts.git
   cd nerd-fonts
   ./install.sh
   cd ..
   rm -rf nerd-fonts
 } 
+
+OPT=`getopt f $*`
+set -- $OPT
+
+while [ $# -gt 0 ]; do
+  case $1 in
+    --) shift; break;;
+    -f) opt_f=true;;
+  esac
+  shift
+done
+
+echo $opt_f
+
+if [ $opt_f = "true" ]; then
+  mkdir -p $HOME/.local/share/fonts/
+  mkdir -p $HOME/.config/fontconfig/conf.d/
+  
+  echo "Download Font"
+  nerd_fonts
+fi
+
+exit
+
+echo "Create $HOME/.config/nvim"
+mkdir -p $HOME/.config/nvim/
+
 
 
 if [ "$(uname)" == "Darwin" ]; then
@@ -23,14 +44,10 @@ if [ "$(uname)" == "Darwin" ]; then
   brew install zplug
   brew install powerlevel9k
 
-  if [ ! -f ~/Library/Fonts/Hack\ Bold\ Nerd\ Font\ Complete.ttf ]; then
-    echo "Download Font"
-    nerd_fonts
-  fi
-
   if [ ! -d ~/miniconda3 ]; then
     curl -o install.sh https://repo.anaconda.com/miniconda/Miniconda3-latest-MacOSX-x86_64.sh
     sh install.sh
+    rm install.sh
   fi
 else
 	sudo apt install rbenv ruby-build
@@ -50,5 +67,4 @@ chmod +x installer.sh
 mkdir -p $HOME/.cache/dein
 sh ./installer.sh $HOME/.cache/dein
 rm installer.sh
-
 
