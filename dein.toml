@@ -1,0 +1,34 @@
+[[plugins]]
+repo = 'Shougo/dein.vim'
+
+# deopleteに必要
+[[plugins]]
+repo = 'roxma/nvim-yarp'
+
+[[plugins]]
+repo = 'roxma/vim-hug-neovim-rpc'
+
+[[plugins]]
+repo = 'Shougo/deoplete.nvim'
+hook_add = '''
+	let g:python3_host_prog = '/usr/bin/python3'
+	let g:deoplete#enable_at_startup = 1
+
+	inoremap <expr><tab> pumvisible() ? "\<c-n>" :
+				\ neosnippet#expandable_or_jumpable() ?
+				\    "\<plug>(neosnippet_expand_or_jump)" : "\<tab>"
+'''
+
+[[plugins]]
+repo = 'shougo/neosnippet.vim'
+hook_add = '''
+	"imap <expr><tab>
+	" \ pumvisible() ? "\<c-n>" :
+	" \ neosnippet#expandable_or_jumpable() ?
+	" \    "\<plug>(neosnippet_expand_or_jump)" : "\<tab>"
+	smap <expr><tab> neosnippet#expandable_or_jumpable() ?
+	\ "\<plug>(neosnippet_expand_or_jump)" : "\<tab>"
+
+	" let g:neosnippet#snippets_directory='~/.vim/bundle/neosnippet-snippets/snippets/'
+'''
+

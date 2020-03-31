@@ -2,15 +2,19 @@ set number
 set encoding=utf-8
 
 " スワップファイルやバックアップファイルを作成しない
-set nobackup
-set noswapfile
+" set nobackup
+" set noswapfile
 
 " カーソルのある行を強調
 set cursorline
+set cursorcolumn
+
+" コマンドライン補完
+set wildmenu
 
 " 空白の可視化
 set list
-set listchars=tab:>.,trail:_,eol:↲,extends:>,precedes:<,nbsp:%
+set listchars=tab:>.,trail:_,extends:>,precedes:<,nbsp:%
 
 " クリップボードと無名レジスタの紐付け
 set clipboard+=unnamedplus
@@ -31,131 +35,85 @@ set smartindent
 set shiftround
 set smarttab
 
-filetype on
+let s:bin_toggle = 0
+function! s:bin_toggle_method() 
+	if s:bin_toggle == 0
+		let s:bin_toggle = 1
+		:%!xxd
+	else
+		let s:bin_toggle = 0
+		:%!xxd -r
+endfunction
+
 let mapleader = "\<Space>"
 
-" 設定ファイルの読み込みPath
-set runtimepath+=$HOME/.cache/dein/repos/github.com/Shougo/dein.vim
+" insert map
+inoremap <silent> jj <ESC>
+inoremap <silent> っj <ESC>
 
-if dein#load_state('$HOME/.cache/dein')
-  call dein#begin('$HOME/.cache/dein')
+" normal map
+nnoremap <Leader>w :w<CR>
+nnoremap <Leader>q :q<CR>
+nnoremap <Leader><Leader> V
+nnoremap <ESC><ESC> :nohlsearch<CR>
+nnoremap <Leader>re :%s;\<<C-R><C-W>\>;g<Left><Left>;
+nnoremap <Leader>ac ggVGy
+nnoremap <Leader>b :<C-u>call <SID>bin_toggle_method()<CR>
 
-  call dein#add('$HOME/.cache/dein/repos/github.com/Shougo/dein.vim')
+" operation map
+onoremap ' i'
+onoremap " i"
+onoremap ( i(
+onoremap [ i[
+onoremap { i{
+onoremap ` i`
+onoremap < i<
 
+nnoremap <Leader>atc :0r /Users/maitake/.config/nvim/templates/atcoder.cpp<CR>
 
-  call dein#add('Shougo/deoplete.nvim')
+" vi互換の動作の無効化
+if &compatible
+	set nocompatible
+endif
+
+" Add the dein installation directory into runtimepath
+set runtimepath+=~/.cache/dein/repos/github.com/Shougo/dein.vim
+
+let s:dein_dir = expand('~/.cache/dein')
+let s:dein_repo_dir = '~/.cache/dein/repos/github.com/Shougo/dein.vim'
+
+if dein#load_state(s:dein_dir)
+	call dein#begin(s:dein_dir)
+
+	call dein#add(s:dein_repo_dir)
+
 	if !has('nvim')
 		call dein#add('roxma/nvim-yarp')
 		call dein#add('roxma/vim-hug-neovim-rpc')
 	endif
-	
-	call dein#add('Shougo/neosnippet.vim')
-	call dein#add('Shougo/neosnippet-snippets')
 
-	" 補完
-  call dein#add('zchee/deoplete-jedi')
-  " call dein#add('zchee/deoplete-go')
+	call dein#load_toml('~/dotfiles/dein.toml',{'lazy': 0})
+	call dein#load_toml('~/dotfiles/dein_lazy.toml',{'lazy': 1})
 
-	call dein#add('udalov/kotlin-vim')
+	call dein#add('flazz/vim-colorschemes',{'merged': 0})
 
-	call dein#add('leafgarland/typescript-vim')
-  call dein#add('itchyny/lightline.vim')
-
-  " Color Scheme
-  call dein#add('flazz/vim-colorschemes')
-
-  call dein#add('scrooloose/nerdtree')
-  call dein#add('Xuyuanp/nerdtree-git-plugin')
-  call dein#add('w0rp/ale')
-  call dein#add('cohama/lexima.vim')
-  call dein#add('airblade/vim-gitgutter')
-  call dein#add('scrooloose/nerdcommenter')
-	call dein#add('Yggdroot/indentLine')
-	call dein#add('editorconfig/editorconfig-vim')
-  call dein#add('yuttie/comfortable-motion.vim')
-
-  call dein#add('tpope/vim-markdown')
-  call dein#add('kannokanno/previm')
-  call dein#add('tyru/open-browser.vim')
-
-  call dein#end()
-  call dein#save_state()
-endif
-
-" deoplete Config
-let g:deoplete#enable_at_startup = 1
-let g:python3_host_prog = '/usr/local/bin/python3'
-" Plugin key-mappings.
-" Note: It must be "imap" and "smap".  It uses <Plug> mappings.
-imap <C-k> <Plug>(neosnippet_expand_or_jump)
-smap <C-k> <Plug>(neosnippet_expand_or_jump)
-xmap <C-k> <Plug>(neosnippet_expand_target)
-
-" SuperTab like snippets behavior.
-" Note: It must be "imap" and "smap".  It uses <Plug> mappings.
-"imap <expr><TAB>
-" \ pumvisible() ? "\<C-n>" :
-" \ neosnippet#expandable_or_jumpable() ?
-" \    "\<Plug>(neosnippet_expand_or_jump)" : "\<TAB>"
-smap <expr><TAB> neosnippet#expandable_or_jumpable() ?
-\ "\<Plug>(neosnippet_expand_or_jump)" : "\<TAB>"
-
-" For conceal markers.
-if has('conceal')
-  set conceallevel=2 concealcursor=niv
-endif
-
-" tabの保管を有効
-inoremap <expr><tab> pumvisible() ? "\<C-n>" :
-			\ neosnippet#expandable_or_jumpable() ?
-			\    "\<Plug>(neosnippet_expand_or_jump)" : "\<tab>"
-
-if dein#check_install()
-  call dein#install()
+	call dein#end()
+	call dein#save_state()
 endif
 
 filetype plugin indent on
 syntax enable
 
-
-" NERDTree Config
-function s:MoveToFileAtStart()
-  call feedkeys("\<C-w>")
-  call feedkeys("\l")
-endfunction
-autocmd VimEnter * NERDTree | call s:MoveToFileAtStart()
-
-let NERDTreeShowHidden = 1
-nnoremap <silent><C-e> :NERDTreeToggle<CR>
-autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
-let g:NERDTreeDirArrowExpandable = '▸'
-let g:NERDTreeDirArrowCollapsible = '▾'
-nnoremap <C-h> <C-w>h
-nnoremap <C-j> <C-w>j
-nnoremap <C-k> <C-w>k
-nnoremap <C-l> <C-w>l
-
-let g:NERDSpaceDelims=1
-
-" Ale Config
-
-let g:ale_lint_on_text_changed = 0
-let g:ale_sign_error = '!'
-let g:ale_sign_warning = '?'
-let g:airline#extensions#ale#open_lnum_symbol = '('
-let g:airline#extensions#ale#close_lnum_symbol = ')'
-let g:ale_echo_msg_format = '[%linter%]%code: %%s'
-highlight link ALEErrorSign Tag
-highlight link ALEWarningSign StorageClass
-nmap <silent> <C-k> <Plug>(ale_previous_wrap)
-nmap <silent> <C-j> <Plug>(ale_next_wrap)
-
-" vim-gitgutter Config
-nnoremap <silent> <C-g><C-n> <Plug>GitGutterNextHunk
-nnoremap <silent> <C-g><C-p> <Plug>GitGutterPrevHunk
-
-inoremap <silent> jj <ESC>
-inoremap <silent> っj <ESC>
+if dein#check_install()
+	call dein#install()
+endif
 
 
-colorscheme iceberg
+if has('persistent_undo')
+	let undo_path = expand('~/.config/nvim/undo')
+	exe 'set undodir=' .. undo_path
+	set undofile
+endif
+
+colorscheme hybrid
+
