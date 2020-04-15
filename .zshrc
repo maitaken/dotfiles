@@ -25,6 +25,7 @@ eval "$(rbenv init - zsh)"
 
 # define environment variable
 export GOPATH=$HOME/dev
+export GOBIN=$GOPATH/bin
 export PATH=$GOPATH/bin:$PATH
 export PATH=$HOME/.nodebrew/current/bin:$PATH
 
@@ -42,7 +43,6 @@ alias gc='git commit'
 if type "nvim" > /dev/null 2>&1; then
 	alias v="nvim"
 	alias vi="nvim"
-	alias vim="nvim"
 fi
 
 # alias
