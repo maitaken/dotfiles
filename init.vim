@@ -2,19 +2,18 @@ set number
 set encoding=utf-8
 
 " スワップファイルやバックアップファイルを作成しない
-" set nobackup
-" set noswapfile
+set nobackup
+set noswapfile
 
 " カーソルのある行を強調
 set cursorline
-set cursorcolumn
 
 " コマンドライン補完
 set wildmenu
 
 " 空白の可視化
 set list
-set listchars=tab:>.,trail:_,extends:>,precedes:<,nbsp:%
+set listchars=tab:\¦\ ,trail:_,extends:>,precedes:<,nbsp:%
 
 " クリップボードと無名レジスタの紐付け
 set clipboard+=unnamedplus
@@ -25,18 +24,24 @@ set ignorecase
 set smartcase
 set hlsearch
 set incsearch
-set inccommand=split
+if has('nvim')
+  set inccommand=split
+endif
 
 " タブ幅系の設定
-set tabstop=2
+set tabstop=4
 set shiftwidth=2
 set autoindent
 set smartindent
 set shiftround
 set smarttab
 
+" Windowを下に作るように設定
+set splitbelow
+set splitright
+
 let s:bin_toggle = 0
-function! s:bin_toggle_method() 
+function! s:bin_toggle_method()
 	if s:bin_toggle == 0
 		let s:bin_toggle = 1
 		:%!xxd
@@ -54,11 +59,15 @@ inoremap <silent> っj <ESC>
 " normal map
 nnoremap <Leader>w :w<CR>
 nnoremap <Leader>q :q<CR>
+nnoremap <Leader>Q :Q<CR>
 nnoremap <Leader><Leader> V
 nnoremap <ESC><ESC> :nohlsearch<CR>
 nnoremap <Leader>re :%s;\<<C-R><C-W>\>;g<Left><Left>;
 nnoremap <Leader>ac ggVGy
 nnoremap <Leader>b :<C-u>call <SID>bin_toggle_method()<CR>
+
+nnoremap <Leader>vt :vsplit +terminal<CR><C-w>20<
+nnoremap <Leader>st :split<CR>:terminal<CR><C-w>20-
 
 " operation map
 onoremap ' i'
@@ -69,18 +78,27 @@ onoremap { i{
 onoremap ` i`
 onoremap < i<
 
+" terminal map
+tnoremap <silent> <ESC> <C-\><C-n>
+tnoremap <silent> jj <C-\><C-n>
+
 nnoremap <Leader>atc :0r /Users/maitake/.config/nvim/templates/atcoder.cpp<CR>
+nnoremap <Leader>atg :0r /Users/maitake/.config/nvim/templates/atcoder.go<CR>
 
 " vi互換の動作の無効化
 if &compatible
 	set nocompatible
 endif
 
-" Add the dein installation directory into runtimepath
-set runtimepath+=~/.cache/dein/repos/github.com/Shougo/dein.vim
-
 let s:dein_dir = expand('~/.cache/dein')
-let s:dein_repo_dir = '~/.cache/dein/repos/github.com/Shougo/dein.vim'
+let s:dein_repo_dir = s:dein_dir . '/repos/github.com/Shougo/dein.vim'
+"
+if &runtimepath !~# '/dein.vim'
+	if !isdirectory(s:dein_repo_dir)
+		execute '!git clone https://github.com/Shougo/dein.vim' s:dein_repo_dir
+	endif
+	execute 'set runtimepath^=' . s:dein_repo_dir
+endif
 
 if dein#load_state(s:dein_dir)
 	call dein#begin(s:dein_dir)
@@ -92,8 +110,12 @@ if dein#load_state(s:dein_dir)
 		call dein#add('roxma/vim-hug-neovim-rpc')
 	endif
 
-	call dein#load_toml('~/dotfiles/dein.toml',{'lazy': 0})
-	call dein#load_toml('~/dotfiles/dein_lazy.toml',{'lazy': 1})
+	let s:rc_dir = expand('~/dotfiles/')
+	let s:toml = s:rc_dir . '/dein.toml'
+	let s:lazy_toml = s:rc_dir . '/dein_lazy.toml'
+
+	call dein#load_toml(s:toml, {'lazy': 0})
+	call dein#load_toml(s:lazy_toml, {'lazy': 0})
 
 	call dein#add('flazz/vim-colorschemes',{'merged': 0})
 
@@ -108,6 +130,11 @@ if dein#check_install()
 	call dein#install()
 endif
 
+let s:removed_plugins = dein#check_clean()
+if len(s:removed_plugins) > 0
+	call map(s:removed_plugins, "delete(v:val, 'rf')")
+	call dein#recache_runtimepath()
+endif
 
 if has('persistent_undo')
 	let undo_path = expand('~/.config/nvim/undo')
@@ -115,5 +142,4 @@ if has('persistent_undo')
 	set undofile
 endif
 
-colorscheme hybrid
-
+colorscheme alduin

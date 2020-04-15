@@ -1,12 +1,31 @@
+[[plugins]]
+repo = 'flazz/vim-colorschemes'
+
 # 補完
 # Python3
 [[plugins]]
 repo = 'zchee/deoplete-jedi'
 depends = ['deoplete.nvim']
 
+[[plugins]]
+repo = 'fatih/vim-go'
+hook_add = '''
+  let g:go_fmt_command = "goimports"
+'''
+on_ft = 'go'
+
+[[plugins]]
+repo = 'zchee/deoplete-go'
+on_ft = 'go'
+
 # 下部 ステータスバー
 [[plugins]]
 repo = 'itchyny/lightline.vim'
+hook_add = '''
+	let g:lightline = {
+	\ 	'colorscheme': 'wombat'
+	\ }
+'''
 
 # Linter
 [[plugins]]
@@ -19,8 +38,6 @@ hook_add = '''
 	let g:ale_echo_msg_format = '[%linter%]%code: %%s'
 	highlight link ALEErrorSign Tag
 	highlight link ALEWarningSign StorageClass
-	nmap <silent> <C-k> <Plug>(ale_previous_wrap)
-	nmap <silent> <C-j> <Plug>(ale_next_wrap)
 	let g:ale_lint_on_text_changed = 0
 	" 自動保存設定
 	let g:ale_fixers = {
@@ -38,23 +55,13 @@ repo = 'cohama/lexima.vim'
 # repo = 'airblade/vim-gitgutter'
 
 [[plugins]]
-repo = 'scrooloose/nerdcommenter'
-
-# インデントにカラー付け
-[[plugins]]
-repo = 'Yggdroot/indentLine'
-
-[[plugins]]
-repo = 'yuttie/comfortable-motion.vim'
-
-[[plugins]]
 repo = 'scrooloose/nerdtree'
 hook_add = '''
-	function s:MoveToFileAtStart()
-		call feedkeys("\<C-w>")
-		call feedkeys("\l")
-	endfunction
-	autocmd VimEnter * NERDTree | call s:MoveToFileAtStart()
+	" function s:MoveToFileAtStart()
+		" call feedkeys("\<C-w>")
+		" call feedkeys("\l")
+	" endfunction
+	" autocmd VimEnter * NERDTree | call s:MoveToFileAtStart()
 
 	let NERDTreeShowHidden = 1
 	nnoremap <silent><C-e> :NERDTreeToggle<CR>
@@ -65,16 +72,37 @@ hook_add = '''
 	nnoremap <C-j> <C-w>j
 	nnoremap <C-k> <C-w>k
 	nnoremap <C-l> <C-w>l
+'''
 
-	let g:NERDSpaceDelims=1
+[[plugins]]
+repo = 'preservim/nerdcommenter'
+merged = 0
+hook_add = '''
+	let g:NERDSpaceDelims = 1
 '''
 
 [[plugins]]
 repo = 'cespare/vim-toml'
 
+# 別形式のシンタックスハイライト
+[[plugins]]
+repo = 'Shougo/context_filetype.vim'
+
+[[plugins]]
+repo = 'osyo-manga/vim-precious'
+
+# ビューア
 [[plugins]]
 repo = 'previm/previm'
 hook_add = '''
   let g:previm_open_cmd = 'open -a Google\ Chrome'
+'''
+
+[[plugins]]
+repo = 'skanehira/translate.vim'
+hook_add = '''
+  let g:translate_source = "en"
+  let g:translate_target = "ja"
+let g:translate_winsize = 10
 '''
 
