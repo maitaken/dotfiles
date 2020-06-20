@@ -53,17 +53,20 @@ endfunction
 let mapleader = "\<Space>"
 
 " insert map
-inoremap <silent> jj <ESC>
-inoremap <silent> っj <ESC>
+inoremap <silent> <C-j> <ESC>
 
 " normal map
 nnoremap <Leader>w :w<CR>
 nnoremap <Leader>q :q<CR>
-nnoremap <Leader>Q :Q<CR>
 nnoremap <Leader><Leader> V
 nnoremap <ESC><ESC> :nohlsearch<CR>
 nnoremap <Leader>re :%s;\<<C-R><C-W>\>;g<Left><Left>;
 nnoremap <Leader>ac ggVGy
+nnoremap <Leader>l 10<C-w>>
+nnoremap <Leader>h 10<C-w><
+nnoremap <Leader>j 10<C-w>-
+nnoremap <Leader>k 10<C-w>+
+
 nnoremap <Leader>b :<C-u>call <SID>bin_toggle_method()<CR>
 
 nnoremap <Leader>vt :vsplit +terminal<CR><C-w>20<
@@ -80,7 +83,7 @@ onoremap < i<
 
 " terminal map
 tnoremap <silent> <ESC> <C-\><C-n>
-tnoremap <silent> jj <C-\><C-n>
+tnoremap <silent> <C-j> <C-\><C-n>
 
 nnoremap <Leader>atc :0r /Users/maitake/.config/nvim/templates/atcoder.cpp<CR>
 nnoremap <Leader>atg :0r /Users/maitake/.config/nvim/templates/atcoder.go<CR>
@@ -143,3 +146,5 @@ if has('persistent_undo')
 endif
 
 colorscheme alduin
+
+autocmd BufNewFile $HOME/works/atcoder/*.go -r $HOME/.config/nvim/templates/atcoder.go
