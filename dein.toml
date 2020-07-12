@@ -2,22 +2,22 @@
 repo = 'Shougo/dein.vim'
 
 # deopleteに必要
-[[plugins]]
-repo = 'roxma/nvim-yarp'
+# [[plugins]]
+# repo = 'roxma/nvim-yarp'
 
-[[plugins]]
-repo = 'roxma/vim-hug-neovim-rpc'
+# [[plugins]]
+# repo = 'roxma/vim-hug-neovim-rpc'
 
-[[plugins]]
-repo = 'Shougo/deoplete.nvim'
-hook_add = '''
-	let g:python3_host_prog = '/usr/bin/python3'
-	let g:deoplete#enable_at_startup = 1
+# [[plugins]]
+# repo = 'Shougo/deoplete.nvim'
+# hook_add = '''
+	# let g:python3_host_prog = '/usr/bin/python3'
+	# let g:deoplete#enable_at_startup = 1
 
-	inoremap <expr><tab> pumvisible() ? "\<c-n>" :
-				\ neosnippet#expandable_or_jumpable() ?
-				\    "\<plug>(neosnippet_expand_or_jump)" : "\<tab>"
-'''
+	# inoremap <expr><tab> pumvisible() ? "\<c-n>" :
+				# \ neosnippet#expandable_or_jumpable() ?
+				# \    "\<plug>(neosnippet_expand_or_jump)" : "\<tab>"
+# '''
 
 [[plugins]]
 repo = 'Shougo/neosnippet.vim'
@@ -54,3 +54,23 @@ hook_add = '''
   let g:neosnippet#snippets_directory='~/.config/nvim/snippets'
 '''
 
+[[plugins]]
+repo='prabirshrestha/asyncomplete.vim'
+hook_add ='''
+  inoremap <expr> <Tab>   pumvisible() ? "\<C-n>" : "\<Tab>"
+  inoremap <expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
+  inoremap <expr> <cr>    pumvisible() ? "\<C-y>" : "\<cr>"
+
+  let g:asyncomplete_auto_completeopt = 0
+  set completeopt=menuone,noinsert,noselect,preview
+  autocmd! CompleteDone * if pumvisible() == 0 | pclose | endif
+'''
+
+[[plugins]]
+repo='prabirshrestha/asyncomplete-lsp.vim'
+
+[[plugins]]
+repo='prabirshrestha/vim-lsp'
+
+[[plugins]]
+repo='mattn/vim-lsp-settings'
