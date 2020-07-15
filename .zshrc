@@ -1,4 +1,4 @@
-TERM=xterm-256color
+export TERM=xterm-256color
 autoload -Uz colors
 autoload -Uz compinit
 colors
@@ -29,6 +29,8 @@ export GOBIN=$GOPATH/bin
 export PATH=$GOPATH/bin:$PATH
 export PATH=$HOME/.nodebrew/current/bin:$PATH
 
+export PATH="$HOME/.cargo/bin:$PATH"
+
 export LC_ALL=ja_JP.UTF-8
 export LANG=ja_JP.UTF-8
 
@@ -50,7 +52,7 @@ fi
 # powerlevel9kの設定
 # zplug "bhilburn/powerlevel9k", use:"powerlevel9k.zsh-theme"
 # source ${HOME}/dotfiles/powerlevel9k.zsh
-
+zplug "zsh-users/zsh-completions"
 # Starship
 eval "$(starship init zsh)"
 

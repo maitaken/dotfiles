@@ -4,27 +4,9 @@ repo = 'Shougo/denite.nvim'
 [[plugins]]
 repo = 'flazz/vim-colorschemes'
 
-# 補完
-# Python3
-# [[plugins]]
-# repo = 'zchee/deoplete-jedi'
-# depends = ['deoplete.nvim']
-
-# # Go
-# [[plugins]]
-# repo = 'fatih/vim-go'
-# hook_add = '''
-#   let g:go_fmt_command = "goimports"
-#   let g:go_template_autocreate=0
-
-#   let g:go_def_mapping_enabled = 0
-#   let g:go_doc_keywordprg_enabled = 0
-# '''
-# on_ft = 'go'
-
-# [[plugins]]
-# repo = 'zchee/deoplete-go'
-# on_ft = 'go'
+# Goの自動Import
+[[plugins]]
+repo = 'mattn/vim-goimports'
 
 # 下部 ステータスバー
 [[plugins]]
@@ -42,27 +24,6 @@ let g:lightline = {
       \ },
       \ }
 '''
-
-# Linter
-# [[plugins]]
-# repo = 'w0rp/ale'
-# hook_add = '''
-	# let g:ale_lint_on_text_changed = 0
-	# let g:ale_sign_error = '!'
-	# let g:ale_sign_warning = '?'
-	# let g:ale_sign_column_always = 1
-	# let g:ale_echo_msg_format = '[%linter%]%code: %%s'
-	# highlight link ALEErrorSign Tag
-	# highlight link ALEWarningSign StorageClass
-	# highlight ALEWarning ctermfg=yellow ctermbg=None
-	# highlight ALEError ctermfg=red ctermbg=None
-	# let g:ale_lint_on_text_changed = 0
-	# " 自動保存設定
-	# let g:ale_fixers = {
-		# \ 'python':['autopep8','isort'],
-	# \ }
-	# let g:ale_fix_on_save=1
-# '''
 
 # とじかっこ補完
 [[plugins]]

@@ -40,16 +40,6 @@ set smarttab
 set splitbelow
 set splitright
 
-let s:bin_toggle = 0
-function! s:bin_toggle_method()
-	if s:bin_toggle == 0
-		let s:bin_toggle = 1
-		:%!xxd
-	else
-		let s:bin_toggle = 0
-		:%!xxd -r
-endfunction
-
 let mapleader = "\<Space>"
 
 " insert map
@@ -60,14 +50,11 @@ nnoremap <Leader>w :w<CR>
 nnoremap <Leader>q :q<CR>
 nnoremap <Leader><Leader> V
 nnoremap <ESC><ESC> :nohlsearch<CR>
-nnoremap <Leader>re :%s;\<<C-R><C-W>\>;g<Left><Left>;
 nnoremap <Leader>ac ggVGy
-nnoremap <Leader>l 10<C-w>>
-nnoremap <Leader>h 10<C-w><
-nnoremap <Leader>j 10<C-w>-
-nnoremap <Leader>k 10<C-w>+
-
-nnoremap <Leader>b :<C-u>call <SID>bin_toggle_method()<CR>
+nnoremap <silent> <Leader>l 10<C-w>>
+nnoremap <silent> <Leader>h 10<C-w><<
+nnoremap <silent> <Leader>j 10<C-w>-
+nnoremap <silent> <Leader>k 10<C-w>+
 
 nnoremap <Leader>vt :vsplit +terminal<CR><C-w>20<
 nnoremap <Leader>st :split<CR>:terminal<CR><C-w>20-
@@ -145,6 +132,6 @@ if has('persistent_undo')
 	set undofile
 endif
 
-colorscheme alduin
+colorscheme hybrid_material
 
 autocmd BufNewFile $HOME/works/atcoder/*.go -r $HOME/.config/nvim/templates/atcoder.go
