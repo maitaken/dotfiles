@@ -1,84 +1,8 @@
-set number
 set encoding=utf-8
+scriptencoding utf-8
 
-" スワップファイルやバックアップファイルを作成しない
-set nobackup
-set noswapfile
-
-" カーソルのある行を強調
-set cursorline
-
-" コマンドライン補完
-set wildmenu
-
-" 空白の可視化
-set list
-set listchars=tab:\¦\ ,trail:_,extends:>,precedes:<,nbsp:%
-
-" クリップボードと無名レジスタの紐付け
-set clipboard+=unnamedplus
-
-" 検索時の大文字を無視
-" 検索文字に大文字がある場合は無視しない
-set ignorecase
-set smartcase
-set hlsearch
-set incsearch
-if has('nvim')
-  set inccommand=split
-endif
-
-" タブ幅系の設定
-set tabstop=4
-set shiftwidth=2
-set autoindent
-set smartindent
-set shiftround
-set smarttab
-
-" Windowを下に作るように設定
-set splitbelow
-set splitright
-
-let mapleader = "\<Space>"
-
-" insert map
-inoremap <silent> <C-j> <ESC>
-
-" normal map
-nnoremap <Leader>w :w<CR>
-nnoremap <Leader>q :q<CR>
-nnoremap <Leader><Leader> V
-nnoremap <ESC><ESC> :nohlsearch<CR>
-nnoremap <Leader>ac ggVGy
-nnoremap <silent> <Leader>l 10<C-w>>
-nnoremap <silent> <Leader>h 10<C-w><<
-nnoremap <silent> <Leader>j 10<C-w>-
-nnoremap <silent> <Leader>k 10<C-w>+
-
-nnoremap <Leader>vt :vsplit +terminal<CR><C-w>20<
-nnoremap <Leader>st :split<CR>:terminal<CR><C-w>20-
-
-" operation map
-onoremap ' i'
-onoremap " i"
-onoremap ( i(
-onoremap [ i[
-onoremap { i{
-onoremap ` i`
-onoremap < i<
-
-" terminal map
-tnoremap <silent> <ESC> <C-\><C-n>
-tnoremap <silent> <C-j> <C-\><C-n>
-
-nnoremap <Leader>atc :0r /Users/maitake/.config/nvim/templates/atcoder.cpp<CR>
-nnoremap <Leader>atg :0r /Users/maitake/.config/nvim/templates/atcoder.go<CR>
-
-" vi互換の動作の無効化
-if &compatible
-	set nocompatible
-endif
+" スペースキーをLeaderに設定
+let g:mapleader = "\<Space>"
 
 let s:dein_dir = expand('~/.cache/dein')
 let s:dein_repo_dir = s:dein_dir . '/repos/github.com/Shougo/dein.vim'
@@ -132,6 +56,94 @@ if has('persistent_undo')
 	set undofile
 endif
 
-colorscheme hybrid_material
+colorscheme alduin
 
-autocmd BufNewFile $HOME/works/atcoder/*.go -r $HOME/.config/nvim/templates/atcoder.go
+set number
+
+" スワップファイルやバックアップファイルを作成しない
+set nobackup
+set noswapfile
+
+" カーソルのある行を強調
+set cursorline
+
+" コマンドライン補完
+set wildmenu
+
+" 空白の可視化
+set list
+set listchars=tab:\¦\ ,trail:_,extends:>,precedes:<,nbsp:%
+
+" クリップボードと無名レジスタの紐付け
+" set clipboard&
+set clipboard^=unnamedplus
+
+" 検索時の大文字を無視
+" 検索文字に大文字がある場合は無視しない
+set ignorecase
+set smartcase
+set hlsearch
+set incsearch
+if has('nvim')
+  set inccommand=split
+endif
+
+" タブ幅系の設定
+set tabstop=4
+set shiftwidth=2
+set autoindent
+set smartindent
+set shiftround
+set smarttab
+
+" Windowを下に作るように設定
+set splitbelow
+set splitright
+
+" helpを日本語優先にする
+set helplang=ja
+
+" カーソル移動時に上下に10行余裕を持つ
+set scrolloff=10
+
+" 矩形選択時の設定
+set virtualedit=block
+
+" insert map
+inoremap <silent> <C-j> <ESC>
+
+" normal map
+nnoremap <Leader>w :w<CR>
+nnoremap <Leader>q :q<CR>
+nnoremap <Leader><Leader> V
+nnoremap <ESC><ESC> :nohlsearch<CR>
+nnoremap <Leader>ac ggVGy
+nnoremap <silent> <Leader>l 10<C-w>>
+nnoremap <silent> <Leader>h 10<C-w><<
+nnoremap <silent> <Leader>j 10<C-w>-
+nnoremap <silent> <Leader>k 10<C-w>+
+
+nnoremap <silent> <Tab> gt
+nnoremap <silent> <S-Tab> gT
+
+nnoremap <silent> <Leader>. :new ~/dotfiles/init.vim<CR>
+nnoremap <silent> <Leader>s :source ~/dotfiles/init.vim<CR>
+
+nnoremap <Leader>vt :vsplit +terminal<CR><C-w>20<
+" nnoremap <Leader>st :split<CR>:terminal<CR><C-w>20-
+
+" operation map
+onoremap ' i'
+onoremap " i"
+onoremap ( i(
+onoremap [ i[
+onoremap { i{
+onoremap ` i`
+onoremap < i<
+
+" terminal map
+tnoremap <silent> <ESC> <C-\><C-n>
+tnoremap <silent> <C-j> <C-\><C-n>
+
+nnoremap <Leader>atc :0r /Users/maitake/.config/nvim/templates/atcoder.cpp<CR>
+nnoremap <Leader>atg :0r /Users/maitake/.config/nvim/templates/atcoder.go<CR>

@@ -1,9 +1,6 @@
 [[plugins]]
 repo = 'Shougo/denite.nvim'
 
-[[plugins]]
-repo = 'flazz/vim-colorschemes'
-
 # Goの自動Import
 [[plugins]]
 repo = 'mattn/vim-goimports'

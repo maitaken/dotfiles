@@ -6,14 +6,14 @@ repo='prabirshrestha/asyncomplete.vim'
 hook_add ='''
   inoremap <expr> <Tab>   pumvisible() ? "\<C-n>" : "\<Tab>"
   inoremap <expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
-  inoremap <expr> <cr>    pumvisible() ? "\<C-y>" : "\<cr>"
+  inoremap <expr> <C-k>    pumvisible() ? "\<C-y>" : "\<cr>"
 
   let g:asyncomplete_auto_popup = 1
   let g:asyncomplete_popup_delay = 30
 
   let g:asyncomplete_auto_completeopt = 0
-  set completeopt=menuone,noinsert,noselect,preview
-  autocmd! CompleteDone * if pumvisible() == 0 | pclose | endif
+  set completeopt=menuone,noselect
+  " autocmd! CompleteDone * if pumvisible() == 0 | pclose | endif
 '''
 
 [[plugins]]
@@ -25,6 +25,10 @@ hook_add='''
   let g:lsp_virtual_text_enabled = 0
   let g:lsp_diagnostics_enabled = 1
   let g:lsp_diagnostics_echo_cursor = 1
+
+  " set foldmethod=expr
+  " \ foldexpr=lsp#ui#vim#folding#foldexpr()
+  " \ foldtext=lsp#ui#vim#folding#foldtext()
 
   let g:lsp_signs_error = {'text': '✗'}
   let g:lsp_signs_warning = {'text': '‼', 'icon': '/path/to/some/icon'} " icons require GUI
@@ -43,14 +47,30 @@ merged='0'
 [[plugins]]
 repo='SirVer/ultisnips'
 hook_add='''
-  let g:UltiSnipsExpandTrigger="<c-k>"
-  let g:UltiSnipsJumpForwardTrigger="<c-k>"
-  let g:UltiSnipsJumpBackwardTrigger="<c-j>"
-
   " If you want :UltiSnipsEdit to split your window.
   let g:UltiSnipsEditSplit="vertical"
 '''
 
 [[plugins]]
 repo='honza/vim-snippets'
+
+[[plugins]]
+repo='prabirshrestha/asyncomplete-ultisnips.vim'
+hook_add='''
+  let g:UltiSnipsJumpForwardTrigger="<Tab>"
+  let g:UltiSnipsJumpBackwardTrigger="<S-Tab>"
+  let g:UltiSnipsExpandTrigger="<C-k>"
+
+  if has('python3')
+	  call asyncomplete#register_source(asyncomplete#sources#ultisnips#get_source_options({
+		  \ 'name': 'ultisnips',
+		  \ 'whitelist': ['*'],
+		  \ 'completor': function('asyncomplete#sources#ultisnips#completor'),
+		  \ }))
+  endif
+'''
+
+[[plugins]]
+repo='thomasfaingnaert/vim-lsp-ultisnips'
+
 
