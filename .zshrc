@@ -47,7 +47,10 @@ if type "nvim" > /dev/null 2>&1; then
 	alias vi="nvim"
 fi
 
-# alias
+# ディレクトリを作成して移動
+function dmv() {
+  mkdir $1 && cd $_
+}
 
 # powerlevel9kの設定
 # zplug "bhilburn/powerlevel9k", use:"powerlevel9k.zsh-theme"

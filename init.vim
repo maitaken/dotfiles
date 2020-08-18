@@ -1,8 +1,13 @@
+" プラグイン内でも使われる設定
 set encoding=utf-8
 scriptencoding utf-8
 
 " スペースキーをLeaderに設定
 let g:mapleader = "\<Space>"
+
+" 楽だけど頭がバグる
+" nnoremap ; :
+" nnoremap : ;
 
 let s:dein_dir = expand('~/.cache/dein')
 let s:dein_repo_dir = s:dein_dir . '/repos/github.com/Shougo/dein.vim'
@@ -118,19 +123,22 @@ nnoremap <Leader>q :q<CR>
 nnoremap <Leader><Leader> V
 nnoremap <ESC><ESC> :nohlsearch<CR>
 nnoremap <Leader>ac ggVGy
+
 nnoremap <silent> <Leader>l 10<C-w>>
 nnoremap <silent> <Leader>h 10<C-w><<
 nnoremap <silent> <Leader>j 10<C-w>-
 nnoremap <silent> <Leader>k 10<C-w>+
 
-nnoremap <silent> <Tab> gt
-nnoremap <silent> <S-Tab> gT
-
+" Tab移動
 nnoremap <silent> <Leader>. :new ~/dotfiles/init.vim<CR>
 nnoremap <silent> <Leader>s :source ~/dotfiles/init.vim<CR>
 
-nnoremap <Leader>vt :vsplit +terminal<CR><C-w>20<
+noremap <Leader>vt :vsplit +terminal<CR><C-w>20<
 " nnoremap <Leader>st :split<CR>:terminal<CR><C-w>20-
+
+" 普段使わないキーの無効化
+nnoremap Q <Nop>
+nnoremap q <Nop>
 
 " operation map
 onoremap ' i'
@@ -146,4 +154,4 @@ tnoremap <silent> <ESC> <C-\><C-n>
 tnoremap <silent> <C-j> <C-\><C-n>
 
 nnoremap <Leader>atc :0r /Users/maitake/.config/nvim/templates/atcoder.cpp<CR>
-nnoremap <Leader>atg :0r /Users/maitake/.config/nvim/templates/atcoder.go<CR>
+nnoremap <Leader>atg :0r /Users/maitake/.config/nvim/templates/main.go<CR>

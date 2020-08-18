@@ -25,6 +25,9 @@ let g:lightline = {
 # とじかっこ補完
 [[plugins]]
 repo = 'cohama/lexima.vim'
+hook_add = '''
+  inoremap <C-l> <C-g>U<Right>
+'''
 
 # git の差分
 [[plugins]]
@@ -75,3 +78,8 @@ hook_add = '''
   let g:previm_open_cmd = 'open -a Google\ Chrome'
 '''
 
+[[plugins]]
+repo='thinca/vim-quickrun'
+hook_add='''
+ " nnoremap <C-r> :QuickRun<CR>
+'''
