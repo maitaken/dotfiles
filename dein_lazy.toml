@@ -77,9 +77,3 @@ repo = 'previm/previm'
 hook_add = '''
   let g:previm_open_cmd = 'open -a Google\ Chrome'
 '''
-
-[[plugins]]
-repo='thinca/vim-quickrun'
-hook_add='''
- " nnoremap <C-r> :QuickRun<CR>
-'''

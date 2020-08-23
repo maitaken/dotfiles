@@ -155,3 +155,4 @@ tnoremap <silent> <C-j> <C-\><C-n>
 
 nnoremap <Leader>atc :0r /Users/maitake/.config/nvim/templates/atcoder.cpp<CR>
 nnoremap <Leader>atg :0r /Users/maitake/.config/nvim/templates/main.go<CR>
+
