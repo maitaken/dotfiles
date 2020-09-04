@@ -6,7 +6,7 @@ get_nerd_fonts() {
   ./install.sh
   cd ..
   rm -rf nerd-fonts
-} 
+}
 
 OPT=`getopt f $*`
 set -- $OPT
@@ -21,7 +21,7 @@ done
 
 echo $opt_f
 
-if [ $opt_f = "true" ]; then
+if [ "$opt_f" = "true" ]; then
   mkdir -p $HOME/.local/share/fonts/
   mkdir -p $HOME/.config/fontconfig/conf.d/
   
@@ -29,12 +29,8 @@ if [ $opt_f = "true" ]; then
   nerd_fonts
 fi
 
-exit
-
 echo "Create $HOME/.config/nvim"
 mkdir -p $HOME/.config/nvim/
-
-
 
 if [ "$(uname)" == "Darwin" ]; then
 	brew install rbenv ruby-build
@@ -62,9 +58,8 @@ ln -f ~/dotfiles/init.vim $HOME/.vimrc
 ln -f ~/dotfiles/.zshrc ~/.zshrc
 ln -f ~/dotfiles/.tmux.conf ~/.tmux.conf
 
-curl https://raw.githubusercontent.com/Shougo/dein.vim/master/bin/installer.sh > installer.sh
-chmod +x installer.sh
-mkdir -p $HOME/.cache/dein
-sh ./installer.sh $HOME/.cache/dein
-rm installer.sh
+curl -fLo ~/.vim/autoload/plug.vim --create-dirs \
+    https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
+sh -c 'curl -fLo "${XDG_DATA_HOME:-$HOME/.local/share}"/nvim/site/autoload/plug.vim --create-dirs \
+       https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim'
 

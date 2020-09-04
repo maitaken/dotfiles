@@ -9,51 +9,36 @@ let g:mapleader = "\<Space>"
 " nnoremap ; :
 " nnoremap : ;
 
-let s:dein_dir = expand('~/.cache/dein')
-let s:dein_repo_dir = s:dein_dir . '/repos/github.com/Shougo/dein.vim'
-"
-if &runtimepath !~# '/dein.vim'
-	if !isdirectory(s:dein_repo_dir)
-		execute '!git clone https://github.com/Shougo/dein.vim' s:dein_repo_dir
-	endif
-	execute 'set runtimepath^=' . s:dein_repo_dir
-endif
+call plug#begin('~/.vim/plugged')
 
-if dein#load_state(s:dein_dir)
-	call dein#begin(s:dein_dir)
+" dein.tomlの内容
+Plug 'prabirshrestha/asyncomplete.vim'
+Plug 'prabirshrestha/vim-lsp'
+Plug 'prabirshrestha/asyncomplete-lsp.vim'
 
-	call dein#add(s:dein_repo_dir)
+Plug 'SirVer/ultisnips'
+Plug 'mattn/vim-lsp-settings'
+Plug 'honza/vim-snippets'
+Plug 'thomasfaingnaert/vim-lsp-ultisnips'
+Plug 'prabirshrestha/asyncomplete-ultisnips.vim'
 
-	if !has('nvim')
-		call dein#add('roxma/nvim-yarp')
-		call dein#add('roxma/vim-hug-neovim-rpc')
-	endif
+" dein_lazy.tomlの内容
+Plug 'flazz/vim-colorschemes'
+Plug 'mattn/vim-goimports'
+Plug 'itchyny/lightline.vim'
+Plug 'cohama/lexima.vim'
+Plug 'airblade/vim-gitgutter'
+Plug 'scrooloose/nerdtree'
+Plug 'preservim/nerdcommenter'
+Plug 'cespare/vim-toml'
+" Plug 'Shougo/context_filetype.vim'
+" Plug 'osyo-manga/vim-precious'
 
-	let s:rc_dir = expand('~/dotfiles/')
-	let s:toml = s:rc_dir . '/dein.toml'
-	let s:lazy_toml = s:rc_dir . '/dein_lazy.toml'
-
-	call dein#load_toml(s:toml, {'lazy': 0})
-	call dein#load_toml(s:lazy_toml, {'lazy': 0})
-
-	call dein#add('flazz/vim-colorschemes',{'merged': 0})
-
-	call dein#end()
-	call dein#save_state()
-endif
+call plug#end()
 
 filetype plugin indent on
 syntax enable
 
-if dein#check_install()
-	call dein#install()
-endif
-
-let s:removed_plugins = dein#check_clean()
-if len(s:removed_plugins) > 0
-	call map(s:removed_plugins, "delete(v:val, 'rf')")
-	call dein#recache_runtimepath()
-endif
 
 if has('persistent_undo')
 	let undo_path = expand('~/.config/nvim/undo')
@@ -155,4 +140,100 @@ tnoremap <silent> <C-j> <C-\><C-n>
 
 nnoremap <Leader>atc :0r /Users/maitake/.config/nvim/templates/atcoder.cpp<CR>
 nnoremap <Leader>atg :0r /Users/maitake/.config/nvim/templates/main.go<CR>
+
+""" ----- プラグインの設定 -----
+" * asyncomplete.vim
+inoremap <expr> <Tab>   pumvisible() ? "\<C-n>" : "\<Tab>"
+inoremap <expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
+inoremap <expr> <CR>    pumvisible() ? "\<C-y>" : "\<CR>
+
+let g:asyncomplete_auto_popup = 1
+let g:asyncomplete_popup_delay = 10
+
+let g:asyncomplete_auto_completeopt = 0
+set completeopt=menuone,noselect
+
+" * vim-lsp
+let g:lsp_virtual_text_enabled = 0
+let g:lsp_diagnostics_enabled = 1
+let g:lsp_diagnostics_echo_cursor = 1
+let g:lsp_async_completion = 1
+
+" set foldmethod=expr
+" \ foldexpr=lsp#ui#vim#folding#foldexpr()
+" \ foldtext=lsp#ui#vim#folding#foldtext()
+" set foldlevel=100
+
+let g:lsp_signs_error = {'text': '✗'}
+let g:lsp_signs_warning = {'text': '‼', 'icon': '/path/to/some/icon'} " icons require GUI
+
+function! s:on_lsp_buffer_enabled() abort
+  setlocal omnifunc=lsp#complete
+  setlocal signcolumn=yes
+  if exists('+tagfunc') | setlocal tagfunc=lsp#tagfunc | endif
+
+  nmap <buffer> gd <plug>(lsp-definition)
+  nmap <buffer> gr <plug>(lsp-references)
+  nmap <buffer> gi <plug>(lsp-implementation)
+  nmap <buffer> <leader>rn <plug>(lsp-rename)
+  nmap <buffer> [g <Plug>(lsp-previous-diagnostic)
+  nmap <buffer> ]g <Plug>(lsp-next-diagnostic)
+  nmap <buffer> K <plug>(lsp-hover)
+endfunction
+
+autocmd BufWritePre <buffer> LspDocumentFormat
+augroup lsp_install
+    au!
+    " call s:on_lsp_buffer_enabled only for languages that has the server registered.
+    autocmd User lsp_buffer_enabled call s:on_lsp_buffer_enabled()
+augroup END
+
+" * ultisnips
+" If you want :UltiSnipsEdit to split your window.
+let g:UltiSnipsEditSplit="vertical"
+
+" * asyncomplete-ultisnips.vim
+let g:UltiSnipsJumpForwardTrigger="<Tab>"
+let g:UltiSnipsJumpBackwardTrigger="<S-Tab>"
+let g:UltiSnipsExpandTrigger="<C-k>"
+
+if has('python3')
+	call asyncomplete#register_source(asyncomplete#sources#ultisnips#get_source_options({
+		\ 'name': 'ultisnips',
+		\ 'whitelist': ['*'],
+		\ 'completor': function('asyncomplete#sources#ultisnips#completor'),
+		\ }))
+endif
+
+" lazyの設定
+" * lightline.vim
+let g:lightline = {
+      \ 'colorscheme': 'seoul256',
+      \ 'active': {
+      \   'right': [ [ 'lineinfo' ],
+      \              [ 'percent' ],
+      \              [ 'fileformat', 'fileencoding', 'filetype', 'charvaluehex' ] ]
+      \ },
+      \ 'component': {
+      \   'charvaluehex': '0x%B'
+      \ },
+      \ }
+
+" * lexima.vim
+inoremap <C-l> <C-g>U<Right>
+
+" * scrooloose/nerdtree
+let NERDTreeShowHidden = 1
+nnoremap <silent><C-e> :NERDTreeToggle<CR>
+autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
+let g:NERDTreeDirArrowExpandable = '▸'
+let g:NERDTreeDirArrowCollapsible = '▾'
+nnoremap <C-h> <C-w>h
+nnoremap <C-j> <C-w>j
+nnoremap <C-k> <C-w>k
+nnoremap <C-l> <C-w>l
+
+" * nerdcommenter
+let g:NERDSpaceDelims = 1
+let g:NERDDefaultAlign = 'left'
 
