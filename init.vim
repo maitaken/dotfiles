@@ -8,6 +8,7 @@ let g:mapleader = "\<Space>"
 " 楽だけど頭がバグる
 " nnoremap ; :
 " nnoremap : ;
+" let g:python3_host_prog='/usr/bin/python3'
 
 call plug#begin('~/.vim/plugged')
 
@@ -46,7 +47,7 @@ if has('persistent_undo')
 	set undofile
 endif
 
-colorscheme alduin
+colorscheme gruvbox
 
 set number
 
@@ -166,6 +167,8 @@ let g:lsp_async_completion = 1
 
 let g:lsp_signs_error = {'text': '✗'}
 let g:lsp_signs_warning = {'text': '‼', 'icon': '/path/to/some/icon'} " icons require GUI
+highlight clear LspWarningLine
+let g:lsp_highlights_enabled = 0
 
 function! s:on_lsp_buffer_enabled() abort
   setlocal omnifunc=lsp#complete
