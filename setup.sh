@@ -27,6 +27,11 @@ if [ ! -f $HOME/.vimrc ]; then
   ln `pwd`/.vimrc $HOME/.vimrc
 fi
 
+if [ ! -f $HOME/.tmux.conf ]; then
+  echo "install tmux.conf"
+  ln `pwd`/.tmux.conf $HOME/.tmux.conf
+fi
+
 if [ ! -d ${HOME}/.local ]; then
   echo "create ${HOME}/.local"
   mkdir -p ${HOME}/.local
