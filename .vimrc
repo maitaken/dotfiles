@@ -5,6 +5,7 @@ set incsearch
 set smartindent
 set expandtab
 set tabstop=2
+set shiftwidth=2
 set wildmenu
 set clipboard+=unnamed
 set laststatus=2
