@@ -1,0 +1,51 @@
+{
+    "files.autoSave": "afterDelay",
+    // vim leader
+    "vim.leader": "<space>", 
+    // vim nnoremap
+    "vim.normalModeKeyBindings": [
+        {
+            "before": ["g", "d"],
+            "command": ["editor.action.revealDefinition"]
+        },
+        {
+            "before": ["g", "s"],
+            "command": ["editor.action.gotoSymbol"]
+        },
+        {
+            "before": ["g", "S"],
+            "command": ["editor.action.workspaceSymbols"]
+        },
+        {
+            "before": ["g", "r"],
+            "command": ["editor.action.goToReferences"]
+        },
+        {
+            "before": ["g", "t"],
+            "command": ["editor.action.goToTypeDefinition"]
+        },
+        {
+            "before": ["<Leader>", "r", "n"],
+            "command": ["editor.action.rename"]
+        },
+        {
+            "before": ["K"],
+            "command": ["editor.action.hover"]
+        },
+        {
+            "before": ["g", "e"],
+            "command": ["editor.action.marker.next"]
+        },
+        {
+            "before": ["g", "E"],
+            "command": ["editor.action.marker.previous"]
+        },
+    ],
+    // vim inoremap
+    "vim.insertModeKeyBindings": [
+        {
+            "before": ["<C-j>"],
+            "command": ["<ESC>"]
+        }
+    ],
+}
