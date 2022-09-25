@@ -10,11 +10,11 @@
         },
         {
             "before": ["g", "s"],
-            "commands": ["editor.action.gotoSymbol"]
+            "commands": ["workbench.action.gotoSymbol"]
         },
         {
             "before": ["g", "S"],
-            "commands": ["editor.action.workspaceSymbols"]
+            "commands": ["workbench.action.showAllSymbols"]
         },
         {
             "before": ["g", "r"],
@@ -30,7 +30,7 @@
         },
         {
             "before": ["K"],
-            "commands": ["editor.action.hover"]
+            "commands": ["editor.action.showHover"]
         },
         {
             "before": ["g", "e"],
@@ -45,7 +45,7 @@
     "vim.insertModeKeyBindings": [
         {
             "before": ["<C-j>"],
-            "after": ["<ESC>"]
-        }
+            "after": ["<Esc>"]
+        },        
     ],
 }
