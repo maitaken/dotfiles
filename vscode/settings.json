@@ -6,39 +6,39 @@
     "vim.normalModeKeyBindings": [
         {
             "before": ["g", "d"],
-            "command": ["editor.action.revealDefinition"]
+            "commands": ["editor.action.revealDefinition"]
         },
         {
             "before": ["g", "s"],
-            "command": ["editor.action.gotoSymbol"]
+            "commands": ["editor.action.gotoSymbol"]
         },
         {
             "before": ["g", "S"],
-            "command": ["editor.action.workspaceSymbols"]
+            "commands": ["editor.action.workspaceSymbols"]
         },
         {
             "before": ["g", "r"],
-            "command": ["editor.action.goToReferences"]
+            "commands": ["editor.action.goToReferences"]
         },
         {
             "before": ["g", "t"],
-            "command": ["editor.action.goToTypeDefinition"]
+            "commands": ["editor.action.goToTypeDefinition"]
         },
         {
             "before": ["<Leader>", "r", "n"],
-            "command": ["editor.action.rename"]
+            "commands": ["editor.action.rename"]
         },
         {
             "before": ["K"],
-            "command": ["editor.action.hover"]
+            "commands": ["editor.action.hover"]
         },
         {
             "before": ["g", "e"],
-            "command": ["editor.action.marker.next"]
+            "commands": ["editor.action.marker.next"]
         },
         {
             "before": ["g", "E"],
-            "command": ["editor.action.marker.previous"]
+            "commands": ["editor.action.marker.previous"]
         },
     ],
     // vim inoremap
