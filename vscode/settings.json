@@ -1,5 +1,10 @@
 {
     "files.autoSave": "afterDelay",
+    // vim
+    // vim easymotion
+    "vim.easymotion": true,
+    "vim.easymotionMarkerForegroundColorOneChar": "rgba(0,240,170,0.9)",
+    "vim.easymotionMarkerForegroundColorTwoCharSecond": "rgba(0,240,170,0.9)",
     // vim leader
     "vim.leader": "<space>", 
     // vim nnoremap
