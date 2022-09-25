@@ -45,7 +45,7 @@
     "vim.insertModeKeyBindings": [
         {
             "before": ["<C-j>"],
-            "command": ["<ESC>"]
+            "after": ["<ESC>"]
         }
     ],
 }
