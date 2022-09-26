@@ -9,6 +9,8 @@
     "vim.leader": "<space>", 
     // vim clipboard
     "vim.useSystemClipboard": true,
+    // vim search
+    "vim.incsearch": true,
     // vim nnoremap
     "vim.normalModeKeyBindings": [
         {
