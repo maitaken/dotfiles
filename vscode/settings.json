@@ -7,6 +7,8 @@
     "vim.easymotionMarkerForegroundColorTwoCharSecond": "rgba(0,240,170,0.9)",
     // vim leader
     "vim.leader": "<space>", 
+    // vim clipboard
+    "vim.useSystemClipboard": true,
     // vim nnoremap
     "vim.normalModeKeyBindings": [
         {
