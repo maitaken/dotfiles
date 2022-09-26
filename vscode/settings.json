@@ -45,6 +45,10 @@
             "before": ["g", "E"],
             "commands": ["editor.action.marker.previous"]
         },
+        {
+            "before": ["f"],
+            "after": ["leader", "leader", "leader", "b", "d", "w"]
+        },
     ],
     // vim inoremap
     "vim.insertModeKeyBindings": [
