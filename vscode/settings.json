@@ -31,6 +31,10 @@
             "commands": ["editor.action.goToReferences"]
         },
         {
+            "before": ["g", "i"],
+            "commands": ["editor.action.goToImplementation"]
+        },
+        {
             "before": ["g", "t"],
             "commands": ["editor.action.goToTypeDefinition"]
         },
@@ -58,6 +62,10 @@
             "before": ["f"],
             "after": ["leader", "leader", "leader", "b", "d", "w"]
         },
+        {
+            "before": ["leader", "y"],
+            "after": ["\"", "*", "y"]
+        },
     ],
     // vim inoremap
     "vim.insertModeKeyBindings": [
@@ -72,5 +80,9 @@
             "before": ["leader", "/"],
             "after": ["escape", "/", "\\", "%", "V"]
         },
+        {
+            "before": ["leader", "y"],
+            "after": ["\"", "*", "y"]
+        }
     ]
 }
