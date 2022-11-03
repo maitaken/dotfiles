@@ -1,10 +1,43 @@
 {
+    "remote.SSH.remotePlatform": {
+        "dev": "linux"
+    },
+    "gitlens.advanced.messages": {
+        "suppressGitVersionWarning": true
+    },
+    // data send 
+    "telemetry.telemetryLevel": "off",
+    // window
+    "window.nativeTabs": true,
+    // workbench
+    "workbench.editor.enablePreview": false,
+    "workbench.editor.focusRecentEditorAfterClose": false,
+    "workbench.editor.wrapTabs": true,
+    "workbench.settings.editor": "json",
+    // editor
+    "editor.guides.bracketPairs": "active",
+    "editor.copyWithSyntaxHighlighting": false,
+    "editor.stickyScroll.enabled": true,
+    "editor.formatOnPaste": false,
+    "editor.formatOnSave": true,
+    "editor.formatOnType": false,
+    "[jsonc]": {
+        "editor.formatOnSave": false,
+    },
+    "[json]": {
+        "editor.formatOnSave": false,
+    },
+    // files
+    "files.insertFinalNewline": true,
     "files.autoSave": "afterDelay",
+    // diff editor
+    "diffEditor.ignoreTrimWhitespace": false,
+    // extension config
     // vim
     // vim easymotion
     "vim.easymotion": true,
-    "vim.easymotionMarkerForegroundColorOneChar": "rgba(0,240,170,0.9)",
-    "vim.easymotionMarkerForegroundColorTwoCharSecond": "rgba(0,240,170,0.9)",
+    "vim.easymotionMarkerForegroundColorOneChar": "rgba(-1,240,170,0.9)",
+    "vim.easymotionMarkerForegroundColorTwoCharSecond": "rgba(-1,240,170,0.9)",
     // vim leader
     "vim.leader": "<space>", 
     // vim search
@@ -72,6 +105,10 @@
         {
             "before": ["<C-j>"],
             "after": ["<Esc>"]
+        },
+        {
+            "before": ["<C-i>"],
+            "commands": ["editor.action.triggerSuggest"]
         },        
     ],
     // vim vnoremap
