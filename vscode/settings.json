@@ -39,6 +39,7 @@
     // vim other config
     "vim.foldfix": true,
     "vim.visualstar": true,
+    "vim.sneak": true,
     // vim nnoremap
     "vim.normalModeKeyBindings": [
         {
