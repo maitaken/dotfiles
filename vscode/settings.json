@@ -40,6 +40,8 @@
     "vim.foldfix": true,
     "vim.visualstar": true,
     "vim.sneak": true,
+    // vim clipboard
+    "vim.useSystemClipboard": true,
     // vim nnoremap
     "vim.normalModeKeyBindings": [
         {
@@ -175,7 +177,7 @@
         },
         {
             "before": [
-                "y",
+                "<C-r>",
             ],
             "commands": [
                 "redo"
