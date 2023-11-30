@@ -15,6 +15,7 @@
     "editor.formatOnPaste": false,
     "editor.formatOnSave": true,
     "editor.formatOnType": false,
+    "editor.cursorBlinking": "expand",
     "[jsonc]": {
         "editor.formatOnSave": false,
     },
