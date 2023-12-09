@@ -34,6 +34,13 @@ if type nodebrew > /dev/null 2>&1; then
   export PATH=$PATH:$HOME/.nodebrew/current/bin
 fi
 
+# tmux の session に attach する
+function select-tmux-session() {
+  selected=$(tmux list-session | cut -d : -f 1 | fzf)
+  tmux attach -t $selected
+}
+alias ta=select-tmux-session
+
 alias gcd='cd $(ghq root)/$(ghq list | fzf)'
 
 if type go > /dev/null 2>&1; then
