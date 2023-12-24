@@ -22,6 +22,8 @@
     "[json]": {
         "editor.formatOnSave": false,
     },
+    // スニペットの表示位置
+    "editor.snippetSuggestions": "top",
     // files
     "files.insertFinalNewline": true,
     "files.autoSave": "afterDelay",
