@@ -43,6 +43,8 @@ alias ta=select-tmux-session
 
 alias gcd='cd $(ghq root)/$(ghq list | fzf)'
 
+alias d='docker'
+
 if type go > /dev/null 2>&1; then
   export GOPATH=$HOME/.local/gopkg
   export PATH=$PATH:$GOPATH/bin
