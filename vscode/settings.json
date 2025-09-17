@@ -170,22 +170,6 @@
                 "y"
             ]
         },
-        {
-            "before": [
-                "u",
-            ],
-            "commands": [
-                "undo"
-            ]
-        },
-        {
-            "before": [
-                "<C-r>",
-            ],
-            "commands": [
-                "redo"
-            ]
-        },
     ],
     // vim inoremap
     "vim.insertModeKeyBindings": [
