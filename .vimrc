@@ -8,12 +8,15 @@ set tabstop=2
 set shiftwidth=2
 set wildmenu
 set laststatus=2
+" Use system clipboard
+set clipboard=unnamedplus
 
 let mapleader = '\<Space>'
 
 inoremap <C-j> <ESC>
 
 nnoremap <ESC><ESC> :nohlsearch<CR>
+
 
 let s:dein_dir = expand('~/.cache/dein')
 let s:dein_repo_dir = s:dein_dir . '/repos/github.com/Shougo/dein.vim'
